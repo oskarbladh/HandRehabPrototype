@@ -4,8 +4,14 @@ using UnityEngine;
 using Leap;
 using Leap.Unity;
 
+///<summary>
+///Creates Raycast from the pointer finger of the hand to which the script is attached.
+///Lerps the mushroom nearby to the hand, if it is pointed.
+///</summary>
 public class MushroomPointAndPickup : MonoBehaviour
 {
+    [SerializeField]
+    GameManagerScript GameManager;
     [SerializeField]
     HandModelBase HandModelBase;
     private Hand _hand;
@@ -13,8 +19,9 @@ public class MushroomPointAndPickup : MonoBehaviour
     Finger _middle;
     Finger _ring;
     Finger _pinky;
+    [SerializeField]
     Vector3 offsetForPointing=new Vector3(0f,0f,0f);
-  
+   
     Transform startMarker;
     Vector3 endMarker;
     public float speed = 0.1F;
@@ -22,7 +29,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     private float journeyLength;
 
     GameObject objectIsPointed=null;
-    public bool objectIsWithinRadius=false;
+    //public bool objectIsWithinRadius=false;
 
     void Start()
     {
@@ -53,13 +60,11 @@ public class MushroomPointAndPickup : MonoBehaviour
 
      void FixedUpdate()
     {
-       
-
         ///<summary>
         ///if the object comes near the hands the mushroom will fall on the floor
         ///the player has to pick/grab it(2 motions - pinch/grab and also any hand) 
         ///</summary>
-        if(!objectIsWithinRadius){
+        if(!GameManager.objectIsWithinRadius){
             //point and pull function
             raycastFromTheIndexFinger();
         } else{

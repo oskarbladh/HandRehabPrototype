@@ -5,6 +5,14 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
 
+    public bool cameraMovementNeeded=false;
+    public bool mushroomGotOut=false;
+    public bool objectIsWithinRadius=false;
+    public float startTime;
+    public Vector3 startCamPos;
+    public Vector3 endCamPos;
+    public float journeyLength;
+    public GameObject MushroomCanvas;
      void Awake()
     {
         

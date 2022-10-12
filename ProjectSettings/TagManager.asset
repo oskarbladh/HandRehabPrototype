@@ -8,6 +8,7 @@ TagManager:
   - Hands
   - Got In Range
   - Got Out of Range
+  - Good Basket
   layers:
   - Default
   - TransparentFX

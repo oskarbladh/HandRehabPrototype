@@ -28,7 +28,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     private float startTime;
     private float journeyLength;
 
-    GameObject objectIsPointed=null;
+    GameObject ObjectIsPointed=null;
     //public bool objectIsWithinRadius=false;
 
     void Start()
@@ -51,10 +51,10 @@ public class MushroomPointAndPickup : MonoBehaviour
 
     void Update()
     {
-        if(objectIsPointed){
+        if(ObjectIsPointed){
             float distCovered = (Time.time - startTime) * speed;
             float fractionOfJourney = distCovered / journeyLength;
-            objectIsPointed.transform.position = Vector3.Lerp(startMarker.position, endMarker, fractionOfJourney);
+            ObjectIsPointed.transform.position = Vector3.Lerp(startMarker.position, endMarker, fractionOfJourney);
         }
     }
 
@@ -68,7 +68,7 @@ public class MushroomPointAndPickup : MonoBehaviour
             //point and pull function
             raycastFromTheIndexFinger();
         } else{
-            objectIsPointed=null;
+            ObjectIsPointed=null;
         }
         
     }
@@ -91,7 +91,7 @@ public class MushroomPointAndPickup : MonoBehaviour
             {
                 Debug.DrawRay(startPoint, transform.TransformDirection(_index.Direction) * 1000, Color.white);
                 //Debug.Log("Did not Hit");
-                objectIsPointed=null;
+                ObjectIsPointed=null;
             }
         }
         else
@@ -110,7 +110,7 @@ public class MushroomPointAndPickup : MonoBehaviour
         // Calculate the journey length.
         journeyLength = Vector3.Distance(startMarker.position, endMarker);
 
-       objectIsPointed=pointedMushroom.transform.gameObject;
+       ObjectIsPointed=pointedMushroom.transform.gameObject;
     }
 
 

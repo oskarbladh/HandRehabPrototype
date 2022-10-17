@@ -44,6 +44,6 @@ public class GameManagerScript : MonoBehaviour
         {
             Name.text = mushRoomData.Mname;
         }
-        Score.text="Score: "+(score/2);
+        Score.text="Score: "+(score);
     }
 }

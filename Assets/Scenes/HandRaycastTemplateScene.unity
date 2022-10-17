@@ -322,7 +322,7 @@ MonoBehaviour:
   GameManager: {fileID: 690663648}
   HandModelBase: {fileID: 0}
   offsetForPointing: {x: 0, y: 0, z: 0}
-  speed: 0.5
+  speed: 1
 --- !u!1 &94898011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,7 +1679,7 @@ MonoBehaviour:
   GameManager: {fileID: 690663648}
   HandModelBase: {fileID: 0}
   offsetForPointing: {x: 0, y: 0, z: 0}
-  speed: 0.5
+  speed: 1
 --- !u!1001 &1548643316
 PrefabInstance:
   m_ObjectHideFlags: 0

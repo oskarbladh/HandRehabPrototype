@@ -16,6 +16,7 @@ public class GameManagerScript : MonoBehaviour
     public Vector3 startCamPos;
     public Vector3 endCamPos;
     public float journeyLength;
+    //picked mushroom data to display on the canvas
     public MushroomInfo mushRoomData=null;
     
     public Text Name;
@@ -29,7 +30,7 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
-        Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
+        //Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     public void updateScore(){
@@ -40,10 +41,12 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         if(mushRoomData!=null)
-        if(Name.text != mushRoomData.Mname)
+        if(Name.text != mushRoomData.mName)
         {
-            Name.text = mushRoomData.Mname;
+            Name.text = mushRoomData.mName;
         }
-        Score.text="Score: "+(score);
+        //Score.text="Score: "+(score);
+
+        //Mushroom Spawning with all props and also Object pooling should be handled in the script
     }
 }

@@ -55,13 +55,22 @@ public class MushroomSceneScript : MonoBehaviour
             GameManager.mushroomGotOut = false;
             GameManager.startTime = Time.time;
             GameManager.startCamPos=MainCamera.transform.position;
-            GameManager.endCamPos=new Vector3(0f,0.497999996f,-0.597000003f);
+            GameManager.endCamPos=new Vector3(0,0.888999999f,-0.744000018f);
+            MainCamera.GetComponent<Camera>().fieldOfView = 37;
             GameManager.journeyLength = Vector3.Distance(GameManager.startCamPos, GameManager.endCamPos);
             GameManager.mushRoomData = this.GetComponent<MushroomInfo>();
         }
         else if(other.CompareTag("Good Basket"))
         {
             GameManager.updateScore();
+            GameManager.cameraMovementNeeded = true;
+            GameManager.mushroomGotOut = true;
+            GameManager.startTime = Time.time;
+            GameManager.startCamPos=MainCamera.transform.position;
+            GameManager.endCamPos=new Vector3(0,1.09899998f,-0.568000019f);
+            MainCamera.GetComponent<Camera>().fieldOfView = 70;
+            GameManager.journeyLength = Vector3.Distance(GameManager.startCamPos, GameManager.endCamPos);
+            GameManager.objectIsWithinRadius=false;
             Destroy(this.gameObject);
         }
         // else if(!other.CompareTag("Got Out of Range")){

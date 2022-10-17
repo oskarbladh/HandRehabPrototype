@@ -83,14 +83,14 @@ public class MushroomPointAndPickup : MonoBehaviour
             if (Physics.Raycast(startPoint, transform.TransformDirection(_index.Direction), out hit, Mathf.Infinity, layerMask))
             {
                 Debug.DrawRay(startPoint, transform.TransformDirection(_index.Direction) * hit.distance, Color.yellow);
-                //Debug.Log("Did Hit");
+                Debug.Log("Did Hit");
                 //Animate
                 objectHasBeenDetected(hit,startPoint);
             }
             else
             {
                 Debug.DrawRay(startPoint, transform.TransformDirection(_index.Direction) * 1000, Color.white);
-                //Debug.Log("Did not Hit");
+                Debug.Log("Did not Hit");
                 ObjectIsPointed=null;
             }
         }

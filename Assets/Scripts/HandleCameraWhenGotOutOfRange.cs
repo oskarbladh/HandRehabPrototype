@@ -25,7 +25,8 @@ public class HandleCameraWhenGotOutOfRange : MonoBehaviour
             GameManager.mushroomGotOut = true;
             GameManager.startTime = Time.time;
             GameManager.startCamPos=MainCamera.transform.position;
-            GameManager.endCamPos=new Vector3(0,0.970000029f,-0.769999981f);
+            GameManager.endCamPos=new Vector3(0,1.09899998f,-0.568000019f);
+            MainCamera.GetComponent<Camera>().fieldOfView = 70;
             GameManager.journeyLength = Vector3.Distance(GameManager.startCamPos, GameManager.endCamPos);
         }
     }

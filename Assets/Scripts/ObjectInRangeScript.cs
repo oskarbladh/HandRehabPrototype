@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 ///<summary>
-///Boolean script to turn off raycast from the finger if it comes near the range of hands
+///RAYCAST ONLY NOT OBJECT///////////////////////////////////////////////////////////////
+///Boolean script to turn off RAYCAST from the finger if it comes near the range of hands
 ///</summary>
 public class ObjectInRangeScript : MonoBehaviour
 {
@@ -25,13 +26,16 @@ public class ObjectInRangeScript : MonoBehaviour
         if(other.CompareTag("Mushroom")){
             Debug.Log("Triggered");
            GameManager.objectIsWithinRadius=true;
+           //Add this gameObject to MushroomsInRange for handling the camera movement when multiple mushrooms come in range
+           if(!GameManager.MushroomsInRange.Contains(other.gameObject))
+                GameManager.MushroomsInRange.Add(other.gameObject);
         }
     }
 
     private void OnTriggerExit(Collider other) {
          if(other.CompareTag("Mushroom")){
            GameManager.objectIsWithinRadius=false;
-            //have to reset its position when it falls back of the hands
+            //remove the gameObject from MushroomsInRange
         }
     }
 }

@@ -86,12 +86,23 @@ public class MushroomPointAndPickup : MonoBehaviour
                 Debug.Log("Did Hit");
                 //Animate
                 objectHasBeenDetected(hit,startPoint);
+
+                int tempVariable = GameManager.AllMushrooms.FindIndex(obj=>obj==hit.transform.gameObject);
+                Debug.Log("The pointed index value is:"+tempVariable);
+                for(int i=0;i<GameManager.AllMushrooms.Count;i++)
+                {
+                    //make other mushrooms fade out for effect
+                }
             }
             else
             {
                 Debug.DrawRay(startPoint, transform.TransformDirection(_index.Direction) * 1000, Color.white);
                 Debug.Log("Did not Hit");
                 ObjectIsPointed=null;
+                for(int i=0;i<GameManager.AllMushrooms.Count;i++)
+                {
+                    //make all mushrooms return to normal
+                }
             }
         }
         else

@@ -9,6 +9,8 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     GameObject PlayerCanvas;
     public GameObject MushroomCanvas;
+    public List<GameObject> AllMushrooms;
+    public List<GameObject> MushroomsInRange;
     public bool cameraMovementNeeded=false;
     public bool mushroomGotOut=false;
     public bool objectIsWithinRadius=false;
@@ -16,6 +18,7 @@ public class GameManagerScript : MonoBehaviour
     public Vector3 startCamPos;
     public Vector3 endCamPos;
     public float journeyLength;
+    GameObject MainCamera;
     //picked mushroom data to display on the canvas
     public MushroomInfo mushRoomData=null;
     
@@ -29,6 +32,7 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+          MainCamera=GameObject.Find("Main Camera");
         //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
         //Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
     }
@@ -48,5 +52,16 @@ public class GameManagerScript : MonoBehaviour
         //Score.text="Score: "+(score);
 
         //Mushroom Spawning with all props and also Object pooling should be handled in the script
+    }
+
+
+    public void settingUpLerpValues(bool cameraMovementNeeded,bool mushroomGotOut,Vector3 endPos,int fieldOfView){
+        this.cameraMovementNeeded = cameraMovementNeeded;
+        this.mushroomGotOut = mushroomGotOut;
+        startTime = Time.time;
+        startCamPos=MainCamera.transform.position;
+        endCamPos=endPos;
+        MainCamera.GetComponent<Camera>().fieldOfView = fieldOfView;
+        journeyLength = Vector3.Distance(startCamPos, endCamPos);
     }
 }

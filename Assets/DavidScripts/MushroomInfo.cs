@@ -11,7 +11,7 @@ public class MushroomInfo : MonoBehaviour
     public string mName;  //This should be SetName'd for each mushroom type and made into a prefab
     public string mProperties;
     public float mSize=1.0f; //This should be SetSize'd for each mushroom type and made into a prefab, or randomised if we have time
-
+    public bool poison;
     public bool isEaten, isInfested, isMiscolored, isMoldy; // Hardcode these into each prefab, I can do it once we have our models - David || or randomised if we have time
 
     //Temp size modifier - remove it after object pooling is done

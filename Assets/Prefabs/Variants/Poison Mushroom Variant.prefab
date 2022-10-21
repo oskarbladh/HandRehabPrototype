@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f1964e482ed894e9b3f9fa85bc3e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: 
-  mProperties: 
+  mName: Poison Mushroom
+  mProperties: Eat the mushroom and you die.
   mSize: 1
   isEaten: 0
   isInfested: 0

@@ -29,6 +29,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     private float journeyLength;
 
     GameObject ObjectIsPointed=null;
+    LineRenderer laserLineRenderer;
     //public bool objectIsWithinRadius=false;
 
     void Start()
@@ -46,6 +47,8 @@ public class MushroomPointAndPickup : MonoBehaviour
         else{
             offsetForPointing= new Vector3(0.11f,0.18f,0f);
         }
+        laserLineRenderer=this.GetComponent<LineRenderer>();
+        
     }
 
 

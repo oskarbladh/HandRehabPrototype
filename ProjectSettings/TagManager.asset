@@ -9,6 +9,7 @@ TagManager:
   - Got In Range
   - Got Out of Range
   - Good Basket
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -83,7 +83,7 @@ public class MovementTrackerScript : MonoBehaviour
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         int factor = 1;
         //Debug.Log(_hand.Direction.y);
-        Debug.Log(_hand.Rotation.z);
+        //Debug.Log(_hand.Rotation.z);
         //Debug.Log(_hand.WristPosition);
 
         float dis = Vector3.Distance(handPosition, _hand.WristPosition); // Calculating Distance

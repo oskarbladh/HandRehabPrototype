@@ -23,6 +23,7 @@ public class GameManagerScript : MonoBehaviour
     public MushroomInfo mushRoomData=null;
     
     public Text Name;
+    public Text Description;
     TextMeshProUGUI Score;
 
     private int score=0;
@@ -34,11 +35,17 @@ public class GameManagerScript : MonoBehaviour
     {
           MainCamera=GameObject.Find("Main Camera");
         //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
-        //Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
+        Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     public void updateScore(){
-        score+=1;
+       if(mushRoomData!=null)
+       {
+        if(mushRoomData.poison)
+            score-=2;
+        else
+            score+=1;
+       }
     }
 
     // Update is called once per frame
@@ -47,9 +54,19 @@ public class GameManagerScript : MonoBehaviour
         if(mushRoomData!=null)
         if(Name.text != mushRoomData.mName)
         {
-            Name.text = mushRoomData.mName;
+            Name.text = "Name:"+mushRoomData.mName;
+            Description.text = "Description:"+mushRoomData.mProperties;
         }
-        //Score.text="Score: "+(score);
+        Score.text="Score: "+(score);
+
+            if(!(MushroomsInRange.Count > 0)){
+                settingUpLerpValues(true,true,new Vector3(0,1.09899998f,-0.568000019f),70);
+                objectIsWithinRadius=false;
+            }
+            else
+            {
+                settingUpLerpValues(true,false,new Vector3(0,0.888999999f,-0.744000018f),37);
+            }
 
         //Mushroom Spawning with all props and also Object pooling should be handled in the script
     }

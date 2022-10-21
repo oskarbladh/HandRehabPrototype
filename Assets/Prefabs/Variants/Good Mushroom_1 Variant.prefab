@@ -33,15 +33,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5440707293445741943, guid: 494f6d43e170e9145bc7865d243ee00b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.5555553
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5440707293445741943, guid: 494f6d43e170e9145bc7865d243ee00b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.5555553
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5440707293445741943, guid: 494f6d43e170e9145bc7865d243ee00b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.5555553
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5440707293445741943, guid: 494f6d43e170e9145bc7865d243ee00b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -134,10 +134,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.28479928
-  m_Height: 0.8325245
+  m_Radius: 0.2149353
+  m_Height: 0.6721195
   m_Direction: 1
-  m_Center: {x: 0.01952517, y: 0.40799078, z: 0}
+  m_Center: {x: 0.0055446625, y: 0.3277883, z: 0}
 --- !u!114 &67763926379377202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f1964e482ed894e9b3f9fa85bc3e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: 
-  mProperties: 
+  mName: Long Yellow Mushroom
+  mProperties: you can eat the mushroom
   mSize: 5
   isEaten: 0
   isInfested: 0

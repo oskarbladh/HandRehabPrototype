@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Mushroom
+  - Hands
+  - Got In Range
+  - Got Out of Range
+  - Good Basket
   layers:
   - Default
   - TransparentFX
@@ -11,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - RaycastObjects
   - 
   - 
   - 

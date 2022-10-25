@@ -10,7 +10,7 @@ public class CameraMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //GameManager=GameManagerScript.instance;
     }
 
     // Update is called once per frame
@@ -32,10 +32,12 @@ public class CameraMovementScript : MonoBehaviour
 
     IEnumerator MoveCamera(System.Action<bool> callback)
     {
+        if(GameManager.startCamPos!=null && GameManager.endCamPos!=null){
         float distCovered = (Time.time - GameManager.startTime) * speed;
         float fractionOfJourney = distCovered / GameManager.journeyLength;
         transform.position = Vector3.Lerp(GameManager.startCamPos, GameManager.endCamPos, fractionOfJourney);
         yield return new WaitForSeconds(1.0f);
         callback(true);
+        }
     }
 }

@@ -8,7 +8,7 @@ using Leap.Unity.Interaction;
 ///</summary>
 public class MushroomSceneScript : MonoBehaviour
 {
-    [SerializeField]
+    //[SerializeField]
     GameManagerScript GameManager;
     GameObject MainCamera;
 
@@ -17,6 +17,7 @@ public class MushroomSceneScript : MonoBehaviour
 
     void Start()
     {
+         GameManager=GameManagerScript.instance;
         MainCamera=GameObject.Find("Main Camera");
         initialPosition=transform.position;
         mushroomPhysics=GetComponent<Rigidbody>();

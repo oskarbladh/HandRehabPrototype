@@ -8,12 +8,12 @@ using UnityEngine;
 ///</summary>
 public class ObjectInRangeScript : MonoBehaviour
 {
-    [SerializeField]
+    //[SerializeField]
     GameManagerScript GameManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+         GameManager=GameManagerScript.instance;
     }
 
     // Update is called once per frame

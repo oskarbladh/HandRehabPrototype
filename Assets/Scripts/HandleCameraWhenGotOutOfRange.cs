@@ -9,8 +9,12 @@ using UnityEngine;
 public class HandleCameraWhenGotOutOfRange : MonoBehaviour
 {
     ///Instance of the GameManager
-    [SerializeField]
+    //[SerializeField]
     GameManagerScript GameManager;
+
+    void Start(){
+         GameManager=GameManagerScript.instance;
+    }
 
     private void OnTriggerExit(Collider other) {
         if(other.CompareTag("Mushroom")){

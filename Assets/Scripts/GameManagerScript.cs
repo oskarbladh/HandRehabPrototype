@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+    public static GameManagerScript instance;
     [SerializeField]
     GameObject PlayerCanvas;
     public GameObject MushroomCanvas;
@@ -33,7 +35,8 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-          MainCamera=GameObject.Find("Main Camera");
+        instance=this;
+        MainCamera=GameObject.Find("Main Camera");
         //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
         Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
     }
@@ -60,12 +63,12 @@ public class GameManagerScript : MonoBehaviour
         Score.text="Score: "+(score);
 
             if(!(MushroomsInRange.Count > 0)){
-                settingUpLerpValues(true,true,new Vector3(0,1.09899998f,-0.568000019f),70);
+                settingUpLerpValues(true,true,new Vector3(0,1.0998f,-0.5680f),70);
                 objectIsWithinRadius=false;
             }
             else
             {
-                settingUpLerpValues(true,false,new Vector3(0,0.888999999f,-0.744000018f),37);
+                settingUpLerpValues(true,false,new Vector3(0,0.8889f,-0.7440f),37);
             }
 
         //Mushroom Spawning with all props and also Object pooling should be handled in the script
@@ -80,5 +83,10 @@ public class GameManagerScript : MonoBehaviour
         endCamPos=endPos;
         MainCamera.GetComponent<Camera>().fieldOfView = fieldOfView;
         journeyLength = Vector3.Distance(startCamPos, endCamPos);
+    }
+
+    public void ResetLevel(){
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }

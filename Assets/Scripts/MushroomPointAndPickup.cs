@@ -10,7 +10,7 @@ using Leap.Unity;
 ///</summary>
 public class MushroomPointAndPickup : MonoBehaviour
 {
-    [SerializeField]
+    //[SerializeField]
     GameManagerScript GameManager;
     [SerializeField]
     HandModelBase HandModelBase;
@@ -34,6 +34,7 @@ public class MushroomPointAndPickup : MonoBehaviour
 
     void Start()
     {
+         GameManager=GameManagerScript.instance;
         _hand = this.GetComponent<HandModelBase>().GetLeapHand();
         _index = _hand.GetIndex();
         _middle = _hand.GetMiddle();

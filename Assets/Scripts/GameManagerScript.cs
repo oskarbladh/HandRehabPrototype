@@ -10,12 +10,14 @@ public class GameManagerScript : MonoBehaviour
     public static GameManagerScript instance;
     [SerializeField]
     GameObject PlayerCanvas;
+    public GameObject AimUIDisplay;
     public GameObject MushroomCanvas;
     public List<GameObject> AllMushrooms;
     public List<GameObject> MushroomsInRange;
     public bool cameraMovementNeeded=false;
     public bool mushroomGotOut=false;
-    public bool objectIsWithinRadius=false;
+    public bool objectIsSelected=false;
+    public bool explorationMode=true;
     public float startTime;
     public Vector3 startCamPos;
     public Vector3 endCamPos;
@@ -23,6 +25,7 @@ public class GameManagerScript : MonoBehaviour
     GameObject MainCamera;
     //picked mushroom data to display on the canvas
     public MushroomInfo mushRoomData=null;
+    public Transform MushroomTranslatePoint;
     
     public Text Name;
     public Text Description;
@@ -32,10 +35,23 @@ public class GameManagerScript : MonoBehaviour
 
     //GameObject TextUI;
 
+    // public void setObjectIsSelected(bool value){
+    //     GameManagerScript.instance.objectIsSelected =value;
+    // }
+    void Awake(){
+         if (instance != null && instance != this) 
+    { 
+        Destroy(this); 
+    } 
+    else 
+    { 
+        instance = this; 
+    } 
+    }
     // Start is called before the first frame update
     void Start()
     {
-        instance=this;
+       
         MainCamera=GameObject.Find("Main Camera");
         //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
         Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
@@ -64,7 +80,7 @@ public class GameManagerScript : MonoBehaviour
 
             if(!(MushroomsInRange.Count > 0)){
                 settingUpLerpValues(true,true,new Vector3(0,1.0998f,-0.5680f),70);
-                objectIsWithinRadius=false;
+                //objectIsSelected=false;
             }
             else
             {

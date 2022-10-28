@@ -25,17 +25,17 @@ public class ObjectInRangeScript : MonoBehaviour
         
         if(other.CompareTag("Mushroom")){
             Debug.Log("Triggered");
-           GameManager.objectIsWithinRadius=true;
+           //GameManager.objectIsSelected=true;
            //Add this gameObject to MushroomsInRange for handling the camera movement when multiple mushrooms come in range
            if(!GameManager.MushroomsInRange.Contains(other.gameObject))
                 GameManager.MushroomsInRange.Add(other.gameObject);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-         if(other.CompareTag("Mushroom")){
-           GameManager.objectIsWithinRadius=false;
-            //remove the gameObject from MushroomsInRange
-        }
-    }
+    // private void OnTriggerExit(Collider other) {
+    //      if(other.CompareTag("Mushroom")){
+    //        GameManager.objectIsSelected=false;
+    //         //remove the gameObject from MushroomsInRange
+    //     }
+    // }
 }

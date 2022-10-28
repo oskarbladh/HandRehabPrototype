@@ -34,7 +34,7 @@ public class MushroomSceneScript : MonoBehaviour
         //     //  mushroomPhysics.isKinematic = false;
         //     Debug.Log("Position reseted");
         // }
-         if(transform.position.y<-1f)
+         if(transform.position.y<-2f)
          {
             transform.position = initialPosition;
             //transform.rotation = initialtransform.rotation;
@@ -69,10 +69,9 @@ public class MushroomSceneScript : MonoBehaviour
             //remove the object from both AllMushrooms and MushroomsInRange
             GameManager.MushroomsInRange.Remove(this.gameObject);
             GameManager.AllMushrooms.Remove(this.gameObject);
-            
+            GameManager.explorationMode=true;
+            GameManager.objectIsSelected=false;
             Destroy(this.gameObject);
-            //Destroy(GetComponent<InteractionBehaviour>());
-            //Destroy(GetComponent<InteractionBehaviour>());
             //Destroy(GetComponent<InteractionBehaviour>());
         }
         /////////////////////////////////////////////////////////////////////////

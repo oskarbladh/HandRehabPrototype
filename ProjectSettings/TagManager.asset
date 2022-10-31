@@ -9,6 +9,7 @@ TagManager:
   - Got In Range
   - Got Out of Range
   - Good Basket
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Water
   - UI
   - RaycastObjects
-  - 
+  - UI 3D
   - 
   - 
   - 

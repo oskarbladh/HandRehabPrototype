@@ -14,6 +14,11 @@ public class GameManagerScript : MonoBehaviour
     public GameObject MushroomCanvas;
     public List<GameObject> AllMushrooms;
     public List<GameObject> MushroomsInRange;
+    GameObject MainCamera;
+    public Toggle isLeftToggle;
+    public bool isLeft;
+    public MushroomInfo mushRoomData=null;
+    public Transform MushroomTranslatePoint;
     public bool cameraMovementNeeded=false;
     public bool mushroomGotOut=false;
     public bool objectIsSelected=false;
@@ -22,10 +27,9 @@ public class GameManagerScript : MonoBehaviour
     public Vector3 startCamPos;
     public Vector3 endCamPos;
     public float journeyLength;
-    GameObject MainCamera;
+
     //picked mushroom data to display on the canvas
-    public MushroomInfo mushRoomData=null;
-    public Transform MushroomTranslatePoint;
+
     
     public Text Name;
     public Text Description;
@@ -38,6 +42,7 @@ public class GameManagerScript : MonoBehaviour
     // public void setObjectIsSelected(bool value){
     //     GameManagerScript.instance.objectIsSelected =value;
     // }
+
     void Awake(){
          if (instance != null && instance != this) 
     { 
@@ -51,7 +56,6 @@ public class GameManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
         MainCamera=GameObject.Find("Main Camera");
         //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
         Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
@@ -70,6 +74,7 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isLeft = isLeftToggle.isOn;
         if(mushRoomData!=null)
         if(Name.text != mushRoomData.mName)
         {
@@ -105,4 +110,5 @@ public class GameManagerScript : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+
 }

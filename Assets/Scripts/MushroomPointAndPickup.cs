@@ -32,6 +32,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     private float journeyLength;
     private bool journeyEnd=false;
 
+    private bool raycastOff=false;
     
     void Start()
     {
@@ -66,6 +67,17 @@ public class MushroomPointAndPickup : MonoBehaviour
         //     }
         // }
         //Debug.Log("Boolean:"+GameManager.objectIsSelected);
+        // if(GameManager.isLeft){
+        //     if(!_hand.IsLeft)
+        //         raycastOff=true;
+        // }
+        // else
+        // {
+        //     if(_hand.IsLeft){
+        //         //offsetForPointing= new Vector3(0.11f,0.18f,0f);
+        //         raycastOff=true;
+        //     }
+        // }
     }
 
      void FixedUpdate()
@@ -105,6 +117,7 @@ public class MushroomPointAndPickup : MonoBehaviour
             }   
         } else{
             //point and pull function
+            if(!raycastOff)
              raycastFromTheIndexFinger();
         }
         }else{

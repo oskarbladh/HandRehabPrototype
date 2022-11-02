@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010305979622, guid: 92b70ab6225aafa4fad041ade10385f3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4000010305979622, guid: 92b70ab6225aafa4fad041ade10385f3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4000010305979622, guid: 92b70ab6225aafa4fad041ade10385f3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4000010305979622, guid: 92b70ab6225aafa4fad041ade10385f3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f1964e482ed894e9b3f9fa85bc3e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: Poison Mushroom
-  mProperties: Eat the mushroom and you die.
-  mSize: 1
-  poison: 0
+  mName: Vomiting Russula
+  mProperties: Poisonous, the effects of it are as the name suggests
+  mSize: 2
+  poison: 1
   isEaten: 0
   isInfested: 0
   isMiscolored: 0

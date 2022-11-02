@@ -138,7 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e57974f65ef9a54e8f8cdc9bde4ee30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 0}
 --- !u!114 &4478040109097550694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +153,7 @@ MonoBehaviour:
   mName: 
   mProperties: 
   mSize: 1
+  poison: 0
   isEaten: 0
   isInfested: 0
   isMiscolored: 0
@@ -299,6 +299,7 @@ MonoBehaviour:
   mName: 
   mProperties: 
   mSize: 1
+  poison: 0
   isEaten: 0
   isInfested: 0
   isMiscolored: 0
@@ -315,7 +316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e57974f65ef9a54e8f8cdc9bde4ee30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 0}
 --- !u!1001 &8745154187765957636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -337,11 +337,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4611234982058295140, guid: ce6f50866d6dd064896acbc9e39b8873, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04999999
+      value: 0.11000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611234982058295140, guid: ce6f50866d6dd064896acbc9e39b8873, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.11000001
       objectReference: {fileID: 0}
     - target: {fileID: 4611234982058295140, guid: ce6f50866d6dd064896acbc9e39b8873, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04999999
+      value: 0.11000001
       objectReference: {fileID: 0}
     - target: {fileID: 4611234982058295140, guid: ce6f50866d6dd064896acbc9e39b8873, type: 3}
       propertyPath: m_LocalPosition.x
@@ -477,7 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e57974f65ef9a54e8f8cdc9bde4ee30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 0}
 --- !u!114 &2071476536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +496,7 @@ MonoBehaviour:
   mName: 
   mProperties: 
   mSize: 1
+  poison: 0
   isEaten: 0
   isInfested: 0
   isMiscolored: 0

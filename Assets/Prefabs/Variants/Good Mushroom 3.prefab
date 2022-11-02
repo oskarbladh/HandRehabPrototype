@@ -148,9 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f1964e482ed894e9b3f9fa85bc3e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: Yellow Mushroom
-  mProperties: Better than Red Mushroom
+  mName: Chantarelle
+  mProperties: Good to eat, really good on toast!
   mSize: 1
+  poison: 0
   isEaten: 0
   isInfested: 0
   isMiscolored: 0
@@ -167,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e57974f65ef9a54e8f8cdc9bde4ee30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 0}
 --- !u!65 &4844556356489389520
 BoxCollider:
   m_ObjectHideFlags: 0

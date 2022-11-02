@@ -141,9 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f1964e482ed894e9b3f9fa85bc3e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: Red Mushroom
-  mProperties: Eat the mushroom and see.
-  mSize: 0.4
+  mName: Karl Johan
+  mProperties: Good to eat, tastes great
+  mSize: 6
   poison: 0
   isEaten: 0
   isInfested: 0

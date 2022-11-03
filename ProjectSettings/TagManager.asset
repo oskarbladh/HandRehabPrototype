@@ -10,6 +10,7 @@ TagManager:
   - Got Out of Range
   - Good Basket
   - Wall
+  - Leaves
   layers:
   - Default
   - TransparentFX

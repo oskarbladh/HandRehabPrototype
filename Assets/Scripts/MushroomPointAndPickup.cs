@@ -33,7 +33,12 @@ public class MushroomPointAndPickup : MonoBehaviour
     private bool journeyEnd=false;
 
     private bool raycastOff=false;
+
+    private MushroomInfo selectedComponentMushroonInfoScript;
     
+    private float startPosfinMovementCheckValue;
+    bool finMovementDone;
+    Vector3 handPosition=new Vector3(0,0,0);
     void Start()
     {
          GameManager=GameManagerScript.instance;
@@ -42,6 +47,8 @@ public class MushroomPointAndPickup : MonoBehaviour
         _middle = _hand.GetMiddle();
         _ring = _hand.GetRing();
         _pinky = _hand.GetPinky();
+        startPosfinMovementCheckValue=_hand.Direction.x;
+        handPosition=_hand.WristPosition;
         //have to change if the hand's location is decided to change
         if(_hand.IsLeft)
         {
@@ -80,19 +87,34 @@ public class MushroomPointAndPickup : MonoBehaviour
         // }
     }
 
+
      void FixedUpdate()
     {
+       float disdirect = Mathf.Abs(startPosfinMovementCheckValue - _hand.Direction.x);
+      
+       Debug.Log("Fin movement distance:"+disdirect);
         ///<summary>
         ///if the object comes near the hands the mushroom will fall on the floor
         ///the player has to pick/grab it(2 motions - pinch/grab and also any hand)
         ///</summary>
         if(GameManager.explorationMode){
             //journeyEnd=true;
-        if(GameManager.objectIsSelected){
+        if(GameManager.objectIsSelected && selectedComponentMushroonInfoScript!=null){
              //ObjectIsPointed=null;
              Debug.Log("Object Selected");
             if(AimAnimator.GetBool("Locked")){
-                 if(_hand.PalmNormal.y>0.5){
+                 if(selectedComponentMushroonInfoScript.isCoveredByLeaves && _hand.PalmNormal.y>0.4 && _hand.PalmNormal.y<0.7){
+                    if(_middle.IsExtended && _ring.IsExtended && _pinky.IsExtended && _index.IsExtended){
+                       //
+                     
+                            if(disdirect > 0.1) // checking if distance is less than required distance.
+                            {
+                                Debug.Log("Fin movement done");
+                                selectedComponentMushroonInfoScript.setLeavesAnimation();
+                            }
+                        
+                    }
+                 } else if(_hand.PalmNormal.y>0.7 && !selectedComponentMushroonInfoScript.isCoveredByLeaves){
                     if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && !_index.IsExtended){
                         SelectedObject.transform.position = GameManager.MushroomTranslatePoint.position;
                         GameManager.AimUIDisplay.SetActive(false);
@@ -105,9 +127,8 @@ public class MushroomPointAndPickup : MonoBehaviour
 
                         // // // Calculate the journey length.
                         // journeyLength = Vector3.Distance(startMarker.position, endMarker);
-                       
                     }
-                 } else if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _index.IsExtended){
+                 }else if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _index.IsExtended){
                     GameManager.objectIsSelected=false;
                     SelectedObject=null;
                     AimAnimator.SetBool("Locked",false);
@@ -123,7 +144,7 @@ public class MushroomPointAndPickup : MonoBehaviour
         }else{
 
         }
-        
+         startPosfinMovementCheckValue = _hand.Direction.x;
         
     }
 
@@ -185,6 +206,7 @@ public class MushroomPointAndPickup : MonoBehaviour
                     AimAnimator.SetBool("Rotate",false);
                     Debug.Log("Animation is Done");
                     SelectedObject=GameManager.AllMushrooms[indexInAllMushroomsList];
+                    selectedComponentMushroonInfoScript = SelectedObject.GetComponent<MushroomInfo>();
                     StartCoroutine(WaitFunction());
                     Debug.Log(Time.time);
                 }

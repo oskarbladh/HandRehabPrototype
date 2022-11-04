@@ -28,6 +28,8 @@ public class GameManagerScript : MonoBehaviour
     public Vector3 endCamPos;
     public float journeyLength;
 
+    public GameObject Instructions;
+
     //picked mushroom data to display on the canvas
 
     
@@ -84,12 +86,12 @@ public class GameManagerScript : MonoBehaviour
         Score.text="Score: "+(score);
 
             if(!(MushroomsInRange.Count > 0)){
-                settingUpLerpValues(true,true,new Vector3(0,1.0998f,-0.5680f),70);
+                settingUpLerpValues(true,true,new Vector3(0,1.0998f,-0.5680f),75);
                 //objectIsSelected=false;
             }
             else
             {
-                settingUpLerpValues(true,false,new Vector3(0,0.8889f,-0.7440f),37);
+                settingUpLerpValues(true,false,new Vector3(0,0.8889f,-0.7440f),45);
             }
 
         //Mushroom Spawning with all props and also Object pooling should be handled in the script
@@ -109,6 +111,14 @@ public class GameManagerScript : MonoBehaviour
     public void ResetLevel(){
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    public void showInstructions(){
+        Instructions.SetActive(!Instructions.active);
+    }
+
+    public void closeInstructions(){
+        Instructions.SetActive(false);
     }
 
 }

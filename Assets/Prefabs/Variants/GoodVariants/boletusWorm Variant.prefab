@@ -71,7 +71,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: boletusWorm Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3173299971823803086, guid: e22b5b3a01a2f21468da4d368f148c24, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e22b5b3a01a2f21468da4d368f148c24, type: 3}
 --- !u!1 &7863579362616691669 stripped
 GameObject:
@@ -105,9 +106,22 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 0.5
+  m_Height: 0.298043
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.10097827, z: 0}
+--- !u!65 &4252552103511513505
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7863579362616691669}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09201495, y: 0.10363231, z: 0.10491537}
+  m_Center: {x: 0.0005834155, y: 0.0019450681, z: 0.000010088962}
 --- !u!114 &1893906694
 MonoBehaviour:
   m_ObjectHideFlags: 0

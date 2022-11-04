@@ -71,7 +71,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: boletusMould Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8036889992821408279, guid: 39908152e7088d949966316d2624c417, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39908152e7088d949966316d2624c417, type: 3}
 --- !u!1 &6440064811280006053 stripped
 GameObject:
@@ -94,6 +95,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6877126048252781010
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440064811280006053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09201495, y: 0.10363231, z: 0.10491537}
+  m_Center: {x: 0.0005834155, y: 0.0019450681, z: 0.000010088962}
 --- !u!136 &8951328901671049737
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -105,9 +119,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 0.5
+  m_Height: 0.29804307
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.10097827, z: 0}
 --- !u!114 &850041310654349818
 MonoBehaviour:
   m_ObjectHideFlags: 0

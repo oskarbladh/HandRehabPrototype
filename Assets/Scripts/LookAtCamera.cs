@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-    [SerializeField]
-    GameObject Camera;
+    // [SerializeField]
+    // GameObject Camera;
     
     public float rotationSpeed=10f;
 
     void Start()
     {
-        transform.LookAt(Camera.transform);
+        transform.LookAt(Camera.main.transform);
     }
 
 

@@ -18,6 +18,7 @@ public class HandleCameraWhenGotOutOfRange : MonoBehaviour
 
     private void OnTriggerExit(Collider other) {
         if(other.CompareTag("Mushroom")){
+            //other.gameObject.GetComponent<Rigidbody>().isKinematic=false;
             //Cameramovement
             //MainCamera.transform.position = new Vector3(0,0.970000029f,-0.769999981f);
             GameManager.explorationMode=true;

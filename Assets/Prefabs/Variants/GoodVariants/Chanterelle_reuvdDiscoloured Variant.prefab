@@ -71,7 +71,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chanterelle_reuvdDiscoloured Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2348600325733839961, guid: 43edb1595c24b9a4aae70d5e50fbb77b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 43edb1595c24b9a4aae70d5e50fbb77b, type: 3}
 --- !u!1 &2211980661578636632 stripped
 GameObject:
@@ -105,9 +106,22 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 0.5
+  m_Height: 0.28800055
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.10599973, z: 0}
+--- !u!65 &-185133623531346840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2211980661578636632}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.077530555, y: 0.08131691, z: 0.091962814}
+  m_Center: {x: -0.0017213883, y: 0.0000025238842, z: -0.0020329142}
 --- !u!114 &-8214632062034457944
 MonoBehaviour:
   m_ObjectHideFlags: 0

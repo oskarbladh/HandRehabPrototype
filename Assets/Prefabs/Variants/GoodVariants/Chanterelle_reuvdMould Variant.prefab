@@ -71,7 +71,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chanterelle_reuvdMould Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8618062106582978481, guid: 924b6777daed24c458d5435c03bf2d4f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 924b6777daed24c458d5435c03bf2d4f, type: 3}
 --- !u!1 &3747640765474666595 stripped
 GameObject:
@@ -105,9 +106,22 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 0.5
+  m_Height: 0.29506716
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.10246642, z: 0}
+--- !u!65 &4212320920378847752
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3747640765474666595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.077530555, y: 0.08131691, z: 0.091962814}
+  m_Center: {x: -0.0017213883, y: 0.0000025238842, z: -0.0020329142}
 --- !u!114 &-7622543683988623251
 MonoBehaviour:
   m_ObjectHideFlags: 0

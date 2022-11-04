@@ -46,9 +46,9 @@ public class MushroomInfo : MonoBehaviour
     }
 
     IEnumerator WaitFor2Secs(){
-    Debug.Log("Hello:"+Time.time);
+    //Debug.Log("Hello:"+Time.time);
     yield return new WaitForSeconds(2.0f);
-    Debug.Log(Time.time);
+    //Debug.Log(Time.time);
     Destroy(leavesAnimatorFromChild.gameObject);
 }
 }

@@ -21,6 +21,7 @@ public class MushroomSceneScript : MonoBehaviour
         MainCamera=GameObject.Find("Main Camera");
         initialPosition=transform.position;
         mushroomPhysics=GetComponent<Rigidbody>();
+        mushroomPhysics.isKinematic = true;
     }
 
 
@@ -34,11 +35,11 @@ public class MushroomSceneScript : MonoBehaviour
         //     //  mushroomPhysics.isKinematic = false;
         //     Debug.Log("Position reseted");
         // }
-         if(transform.position.y<-2f)
+         if(transform.position.y<-6f)
          {
             transform.position = initialPosition;
             //transform.rotation = initialtransform.rotation;
-            Debug.Log(initialPosition);
+            //Debug.Log(initialPosition);
          }
         //   if(transform.position.x<63f || transform.position.x>62f)
         //  {
@@ -56,6 +57,9 @@ public class MushroomSceneScript : MonoBehaviour
             //MainCamera.transform.position = new Vector3(0f,0.497999996f,-0.597000003f);
             //GameManager.settingUpLerpValues(true,false,new Vector3(0,0.888999999f,-0.744000018f),37);
             GameManager.mushRoomData = this.GetComponent<MushroomInfo>();
+           
+            mushroomPhysics.isKinematic = false;
+            //Debug.Log("Got in Range");
         }
         else if(triggerCollider.CompareTag("Good Basket"))
         {
@@ -67,15 +71,17 @@ public class MushroomSceneScript : MonoBehaviour
             if(GameManager.MushroomsInRange.Contains(this.gameObject))
                 GameManager.updateScore();
             //remove the object from both AllMushrooms and MushroomsInRange
+            transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             GameManager.MushroomsInRange.Remove(this.gameObject);
             GameManager.AllMushrooms.Remove(this.gameObject);
             GameManager.explorationMode=true;
             GameManager.objectIsSelected=false;
+           
             //Destroy(this.gameObject);'
-            this.gameObject.transform.parent = triggerCollider.gameObject.transform;
-            Destroy(GetComponent<CapsuleCollider>());
-            Destroy(GetComponent<InteractionBehaviour>());
-            Destroy(this);
+            // this.gameObject.transform.parent = triggerCollider.gameObject.transform;
+            // Destroy(GetComponent<CapsuleCollider>());
+            // Destroy(GetComponent<InteractionBehaviour>());
+            Destroy(this.gameObject);
         }
         /////////////////////////////////////////////////////////////////////////
         ////////OUT OF RANGE IS HANDLED IN HandleCameraWhenGotOutOfRange/////////

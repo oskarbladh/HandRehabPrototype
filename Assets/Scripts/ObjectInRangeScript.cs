@@ -24,7 +24,7 @@ public class ObjectInRangeScript : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         
         if(other.CompareTag("Mushroom")){
-            Debug.Log("Triggered");
+            //Debug.Log("Triggered");
            //GameManager.objectIsSelected=true;
            //Add this gameObject to MushroomsInRange for handling the camera movement when multiple mushrooms come in range
            if(!GameManager.MushroomsInRange.Contains(other.gameObject))

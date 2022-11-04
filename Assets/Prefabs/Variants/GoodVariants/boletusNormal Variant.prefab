@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7226831626820334772, guid: 603a45dcf2518284189fcf78efa2a9a5, type: 3}
       propertyPath: m_Name
-      value: boletusNormal
+      value: boletusNormal Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7998689530844507662, guid: 603a45dcf2518284189fcf78efa2a9a5, type: 3}
       propertyPath: m_RootOrder
@@ -75,7 +75,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9128077880007810941, guid: 603a45dcf2518284189fcf78efa2a9a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 603a45dcf2518284189fcf78efa2a9a5, type: 3}
 --- !u!1 &5589160935190522715 stripped
 GameObject:
@@ -98,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &-5658518050562457608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589160935190522715}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09201495, y: 0.10363231, z: 0.10491537}
+  m_Center: {x: 0.0005834155, y: 0.0019450681, z: 0.000010088962}
 --- !u!136 &66204025
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -109,10 +123,10 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 0.5
+  m_Height: 0.30416283
   m_Direction: 1
-  m_Center: {x: 0, y: 0.00000056098486, z: 0}
---- !u!114 &66204024
+  m_Center: {x: 0, y: 0.09791882, z: 0}
+--- !u!114 &66204022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +135,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5589160935190522715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e57974f65ef9a54e8f8cdc9bde4ee30, type: 3}
+  m_Script: {fileID: 11500000, guid: d9f1964e482ed894e9b3f9fa85bc3e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mName: Karl Johan
+  mProperties: Good to eat
+  mSize: 5
+  poison: 0
+  isEaten: 0
+  isInfested: 0
+  isMiscolored: 0
+  isMoldy: 0
+  isCoveredByLeaves: 0
+  leafAssetName: 
+  leavesAnimatorFromChild: {fileID: 0}
 --- !u!114 &66204023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +180,7 @@ MonoBehaviour:
     layerIndex: 0
   _eventTable:
     _entries: []
---- !u!114 &66204022
+--- !u!114 &66204024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,17 +189,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5589160935190522715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f1964e482ed894e9b3f9fa85bc3e12, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e57974f65ef9a54e8f8cdc9bde4ee30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mName: Karl Johan
-  mProperties: Good to eat
-  mSize: 5
-  poison: 0
-  isEaten: 0
-  isInfested: 0
-  isMiscolored: 0
-  isMoldy: 0
-  isCoveredByLeaves: 0
-  leafAssetName: 
-  leavesAnimatorFromChild: {fileID: 0}

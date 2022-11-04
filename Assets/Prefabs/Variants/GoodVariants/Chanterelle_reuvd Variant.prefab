@@ -71,7 +71,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chanterelle_reuvd Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4677621910480877751, guid: c99038a31eff14b4c81a85f46791185e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c99038a31eff14b4c81a85f46791185e, type: 3}
 --- !u!1 &8256928309886080684 stripped
 GameObject:
@@ -94,6 +95,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2173064287563056129
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8256928309886080684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.077530555, y: 0.08131691, z: 0.091962814}
+  m_Center: {x: -0.0017213883, y: 0.0000025238842, z: -0.0020329142}
 --- !u!136 &4285705931439501413
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -105,9 +119,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 0.5
+  m_Height: 0.2907207
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.10463965, z: 0}
 --- !u!114 &-8009087534244112610
 MonoBehaviour:
   m_ObjectHideFlags: 0

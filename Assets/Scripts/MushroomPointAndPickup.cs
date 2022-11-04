@@ -103,15 +103,15 @@ public class MushroomPointAndPickup : MonoBehaviour
             //journeyEnd=true;
         if(GameManager.objectIsSelected && selectedComponentMushroonInfoScript!=null){
              //ObjectIsPointed=null;
-             Debug.Log("Object Selected");
+            // Debug.Log("Object Selected");
             if(AimAnimator.GetBool("Locked")){
-                 if(selectedComponentMushroonInfoScript.isCoveredByLeaves && _hand.PalmNormal.y>0.3 && _hand.PalmNormal.y<0.6){
+                 if(selectedComponentMushroonInfoScript.isCoveredByLeaves && _hand.PalmNormal.y>0.25 && _hand.PalmNormal.y<0.6){
                     if(_middle.IsExtended && _ring.IsExtended && _pinky.IsExtended && _index.IsExtended){
                        //
                      
-                            if(disdirect > 0.1) // checking if distance is less than required distance.
+                            if(disdirect > 0.07) // checking if distance is less than required distance.
                             {
-                                Debug.Log("Fin movement done");
+                                //Debug.Log("Fin movement done");
                                 selectedComponentMushroonInfoScript.setLeavesAnimation();
                             }
                         
@@ -133,6 +133,7 @@ public class MushroomPointAndPickup : MonoBehaviour
                  }else if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _index.IsExtended){
                     GameManager.objectIsSelected=false;
                     SelectedObject=null;
+                    AimedObject=null;
                     AimAnimator.SetBool("Locked",false);
                     AimAnimator.SetBool("Rotate",true);
                 }
@@ -158,32 +159,25 @@ public class MushroomPointAndPickup : MonoBehaviour
        
         RaycastHit hit;
         Vector3 startPoint = transform.position+offsetForPointing;
-        if (Physics.Raycast(startPoint, transform.TransformDirection(_index.Direction), out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(startPoint, transform.TransformDirection(_index.Direction), out hit, Mathf.Infinity))
         {
             Debug.DrawRay(startPoint, transform.TransformDirection(_index.Direction) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
+            //Debug.Log("Did Hit");
             //Animate
-            objectHasBeenDetected(hit,startPoint);
-            for(int i=0;i<GameManager.AllMushrooms.Count;i++)
-            {
-                    //make other mushrooms fade out for effect
-                  
+            if(hit.transform.gameObject.tag=="Mushroom")
+                objectHasBeenDetected(hit,startPoint);
+            else if(AimedObject){ objectHasBeenDetectedObjectVersion(AimedObject,startPoint);
             }
         }
         else
         {
             Debug.DrawRay(startPoint, transform.TransformDirection(_index.Direction) * 1000, Color.white);
-            Debug.Log("Did not Hit");
+            //Debug.Log("Did not Hit");
             if(AimedObject){
                  objectHasBeenDetectedObjectVersion(AimedObject,startPoint);
             }
             //ObjectIsPointed=null;
             //GameManager.AimUIDisplay.SetActive(false);
-            for(int i=0;i<GameManager.AllMushrooms.Count;i++)
-            {
-                    //make all mushrooms return to normal
-                    
-            }
         }
     }
 
@@ -199,20 +193,22 @@ public class MushroomPointAndPickup : MonoBehaviour
         int indexInAllMushroomsList = GameManager.AllMushrooms.FindIndex(obj=>obj==pointedMushroom.transform.gameObject);
      
             if(indexInAllMushroomsList>=0){
-                GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[indexInAllMushroomsList].transform.position;
+                GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[indexInAllMushroomsList].transform.position+new Vector3(0,-0.2f,0);
                 GameManager.AimUIDisplay.SetActive(true);
             }
             
             if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended){
                
                 if(!AimAnimator.GetBool("Locked")){
-                    GameManager.objectIsSelected=true;
-                    AimAnimator.SetBool("Locked",true);
-                    AimAnimator.SetBool("Rotate",false);
-                    Debug.Log("Animation is Done");
                     SelectedObject=GameManager.AllMushrooms[indexInAllMushroomsList];
                     selectedComponentMushroonInfoScript = SelectedObject.GetComponent<MushroomInfo>();
                     StartCoroutine(WaitFunction());
+                    GameManager.objectIsSelected=true;
+                    AimAnimator.SetBool("Locked",true);
+                    AimAnimator.SetBool("Rotate",false);
+                    //Debug.Log("Animation is Done");
+                  
+                    
                     Debug.Log(Time.time);
                 }
             }
@@ -225,7 +221,7 @@ public class MushroomPointAndPickup : MonoBehaviour
         // startTime = Time.time;
         // startMarker=pointedMushroom.transform;
         // endMarker=endMarkerVector;
-
+        Debug.Log("RaycastOut"+pointedMushroom.tag);
         // // Calculate the journey length.
         // journeyLength = Vector3.Distance(startMarker.position, endMarker);
         int indexInAllMushroomsList = GameManager.AllMushrooms.FindIndex(obj=>obj==pointedMushroom);
@@ -233,22 +229,23 @@ public class MushroomPointAndPickup : MonoBehaviour
             if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended){
                
                 if(!AimAnimator.GetBool("Locked")){
-                    GameManager.objectIsSelected=true;
-                    AimAnimator.SetBool("Locked",true);
-                    AimAnimator.SetBool("Rotate",false);
-                    Debug.Log("Animation is Done");
                     SelectedObject=GameManager.AllMushrooms[indexInAllMushroomsList];
                     selectedComponentMushroonInfoScript = SelectedObject.GetComponent<MushroomInfo>();
                     StartCoroutine(WaitFunction());
-                    Debug.Log(Time.time);
+                    GameManager.objectIsSelected=true;
+                    AimAnimator.SetBool("Locked",true);
+                    AimAnimator.SetBool("Rotate",false);
+                    //Debug.Log("Animation is Done");
+                   
+                    //Debug.Log(Time.time);
                 }
             }
         //AimedObject=GameManager.AllMushrooms[indexInAllMushroomsList];
     }
 
 IEnumerator WaitFunction(){
-    Debug.Log("Hello:"+Time.time);
+    //Debug.Log("Hello:"+Time.time);
     yield return new WaitForSeconds(2.0f);
-    Debug.Log(Time.time);
+    //Debug.Log(Time.time);
 }
 }

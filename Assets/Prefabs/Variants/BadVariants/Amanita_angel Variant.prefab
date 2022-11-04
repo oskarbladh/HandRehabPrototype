@@ -71,7 +71,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 732685417343665216, guid: 9400e096aa64162438394be789a06028, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9400e096aa64162438394be789a06028, type: 3}
 --- !u!1 &3648931608986068637 stripped
 GameObject:
@@ -105,9 +106,22 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 0.7
+  m_Height: 0.45076334
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.12461853, z: 0}
+--- !u!65 &7098607675113202923
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648931608986068637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.070957616, y: 0.20721579, z: 0.07184771}
+  m_Center: {x: 0.0019264263, y: 0.0043191016, z: -0.0008710226}
 --- !u!114 &-2385485194598002280
 MonoBehaviour:
   m_ObjectHideFlags: 0

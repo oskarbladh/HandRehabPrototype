@@ -74,7 +74,7 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isLeft = isLeftToggle.isOn;
+        //isLeft = isLeftToggle.isOn;
         if(mushRoomData!=null)
         if(Name.text != mushRoomData.mName)
         {

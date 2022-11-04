@@ -21,6 +21,8 @@ public class MushroomPointAndPickup : MonoBehaviour
     [SerializeField]
     Vector3 offsetForPointing=new Vector3(0f,0f,0f);
     GameObject SelectedObject=null;
+
+    GameObject AimedObject=null;
     LineRenderer laserLineRenderer;
     //public bool objectIsWithinRadius=false;
     Animator AimAnimator;
@@ -30,7 +32,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     public float speed = 0.1f;
     private float startTime;
     private float journeyLength;
-    private bool journeyEnd=false;
+    //private bool journeyEnd=false;
 
     private bool raycastOff=false;
 
@@ -103,7 +105,7 @@ public class MushroomPointAndPickup : MonoBehaviour
              //ObjectIsPointed=null;
              Debug.Log("Object Selected");
             if(AimAnimator.GetBool("Locked")){
-                 if(selectedComponentMushroonInfoScript.isCoveredByLeaves && _hand.PalmNormal.y>0.4 && _hand.PalmNormal.y<0.7){
+                 if(selectedComponentMushroonInfoScript.isCoveredByLeaves && _hand.PalmNormal.y>0.3 && _hand.PalmNormal.y<0.6){
                     if(_middle.IsExtended && _ring.IsExtended && _pinky.IsExtended && _index.IsExtended){
                        //
                      
@@ -135,7 +137,7 @@ public class MushroomPointAndPickup : MonoBehaviour
                     AimAnimator.SetBool("Rotate",true);
                 }
                 
-            }   
+            }
         } else{
             //point and pull function
             if(!raycastOff)
@@ -144,7 +146,7 @@ public class MushroomPointAndPickup : MonoBehaviour
         }else{
 
         }
-         startPosfinMovementCheckValue = _hand.Direction.x;
+        startPosfinMovementCheckValue = _hand.Direction.x;
         
     }
 
@@ -172,6 +174,9 @@ public class MushroomPointAndPickup : MonoBehaviour
         {
             Debug.DrawRay(startPoint, transform.TransformDirection(_index.Direction) * 1000, Color.white);
             Debug.Log("Did not Hit");
+            if(AimedObject){
+                 objectHasBeenDetectedObjectVersion(AimedObject,startPoint);
+            }
             //ObjectIsPointed=null;
             //GameManager.AimUIDisplay.SetActive(false);
             for(int i=0;i<GameManager.AllMushrooms.Count;i++)
@@ -211,7 +216,34 @@ public class MushroomPointAndPickup : MonoBehaviour
                     Debug.Log(Time.time);
                 }
             }
-        //ObjectIsPointed=pointedMushroom.transform.gameObject;
+        AimedObject=GameManager.AllMushrooms[indexInAllMushroomsList];
+    }
+
+     void objectHasBeenDetectedObjectVersion(GameObject pointedMushroom,Vector3 endMarkerVector)
+    {
+        // Keep a note of the time the movement started.
+        // startTime = Time.time;
+        // startMarker=pointedMushroom.transform;
+        // endMarker=endMarkerVector;
+
+        // // Calculate the journey length.
+        // journeyLength = Vector3.Distance(startMarker.position, endMarker);
+        int indexInAllMushroomsList = GameManager.AllMushrooms.FindIndex(obj=>obj==pointedMushroom);
+            
+            if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended){
+               
+                if(!AimAnimator.GetBool("Locked")){
+                    GameManager.objectIsSelected=true;
+                    AimAnimator.SetBool("Locked",true);
+                    AimAnimator.SetBool("Rotate",false);
+                    Debug.Log("Animation is Done");
+                    SelectedObject=GameManager.AllMushrooms[indexInAllMushroomsList];
+                    selectedComponentMushroonInfoScript = SelectedObject.GetComponent<MushroomInfo>();
+                    StartCoroutine(WaitFunction());
+                    Debug.Log(Time.time);
+                }
+            }
+        //AimedObject=GameManager.AllMushrooms[indexInAllMushroomsList];
     }
 
 IEnumerator WaitFunction(){
@@ -219,5 +251,4 @@ IEnumerator WaitFunction(){
     yield return new WaitForSeconds(2.0f);
     Debug.Log(Time.time);
 }
-
 }

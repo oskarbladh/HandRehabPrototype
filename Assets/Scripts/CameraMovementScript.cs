@@ -32,7 +32,7 @@ public class CameraMovementScript : MonoBehaviour
 
     IEnumerator MoveCamera(System.Action<bool> callback)
     {
-        if(GameManager.startCamPos!=null && GameManager.endCamPos!=null){
+        if(GameManager.startCamPos!=null && GameManager.endCamPos!=null && !float.IsNaN(GameManager.startCamPos.x) && !float.IsNaN(GameManager.endCamPos.x) && !float.IsNaN(transform.position.x)){
         float distCovered = (Time.time - GameManager.startTime) * speed;
         float fractionOfJourney = distCovered / GameManager.journeyLength;
         transform.position = Vector3.Lerp(GameManager.startCamPos, GameManager.endCamPos, fractionOfJourney);

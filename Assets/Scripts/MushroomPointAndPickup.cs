@@ -50,9 +50,16 @@ public class MushroomPointAndPickup : MonoBehaviour
     public float rotateParam = 0.7f;
 
     public float finParam = 0.08f;
+
+    public float grabParam = 0.8f;
+    private bool leftHand;
+
+    private bool rightHand;
+
+    private bool pointedLeft;
     void Start()
     {
-         GameManager=GameManagerScript.instance;
+        GameManager=GameManagerScript.instance;
         _hand = this.GetComponent<HandModelBase>().GetLeapHand();
         _index = _hand.GetIndex();
         _middle = _hand.GetMiddle();
@@ -262,13 +269,34 @@ IEnumerator WaitFunction(){
 }
 
 void Update(){
-   
+    leftHand = _hand.IsLeft && GameManager.isLeft;
+    rightHand =!_hand.IsLeft && !GameManager.isLeft;
+          
 }
     void FixedUpdate(){
         //To determine whether movement is done based on the distance
-        float disdirect = Mathf.Abs(startPosfinMovementCheckValue - _hand.Direction.x); 
         Debug.Log("HandY:"+_hand.PalmNormal.y);
-        if(GameManager.explorationMode){
+        if(leftHand){
+            executeHandFuncitionalities();
+        } else if(rightHand){
+            executeHandFuncitionalities();
+        }else{
+            //Dont do anything//BLANK
+        }
+    }
+
+    void executeHandFuncitionalities(){
+    float disdirect = Mathf.Abs(startPosfinMovementCheckValue - _hand.Direction.x);
+    if(_hand.Direction.x<-0.5f)
+    {
+        pointedLeft = true;
+        Debug.Log("Fin Left movement done:"+_hand.Direction.x);
+    }
+    else if(_hand.Direction.x>0.5f){
+        pointedLeft = false;
+        Debug.Log("Fin Right movement done:"+_hand.Direction.x);
+    }
+    if(GameManager.explorationMode){
         if(GameManager.objectIsSelected && selectedComponentMushroonInfoScript!=null){
             if(_hand.PalmNormal.y>rotateParam){
                     if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && !_index.IsExtended){
@@ -287,7 +315,7 @@ void Update(){
                         // journeyLength = Vector3.Distance(startMarker.position, endMarker);
                         lastMovedTarget=0;
                     }
-                 }else if(_middle.IsExtended && _ring.IsExtended && _pinky.IsExtended && _index.IsExtended){
+                 }else if(_hand.GrabStrength<grabParam || (_middle.IsExtended && _ring.IsExtended && _pinky.IsExtended && _index.IsExtended)){
                     GameManager.objectIsSelected=false;
                     SelectedObject=null;
                     AimedObject=null;
@@ -297,7 +325,8 @@ void Update(){
                     lastMovedTarget=0;
                 }
         }
-        else{
+        else
+        {
         GameManager.AimUIDisplay.SetActive(true);
         GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[currentIndex].transform.position+new Vector3(0,-0.2f,0);
         if(lastMovedTarget>cooldown){
@@ -305,12 +334,29 @@ void Update(){
             if(_middle.IsExtended && _ring.IsExtended && _pinky.IsExtended && _index.IsExtended){
                 if(disdirect > finParam) // checking if distance is less than required distance.
                 {
-                    Debug.Log("Fin movement done");
-                    Debug.Log("Fin movement distance:"+disdirect);
+                    Debug.Log("Fin movement done"+pointedLeft+"Index:"+currentIndex);
+    //                  if(_hand.Direction.x<-0.5f)
+    // {
+    //     pointedLeft = true;
+    //     Debug.Log("Fin Left movement done:"+_hand.Direction.x);
+    // }
+    // else if(_hand.Direction.x>0.5f){
+    //     pointedLeft = false;
+    //     Debug.Log("Fin Right movement done:"+_hand.Direction.x);
+    // }
+    //                 //Debug.Log("Fin movement distance:"+disdirect);
+    //                 if(pointedLeft){
+    //                     // if(currentIndex==0){
+    //                     //     currentIndex=(totalCountOfMushrooms-1)%totalCountOfMushrooms;
+    //                     // }else{
+    //                         currentIndex=(currentIndex-1)%totalCountOfMushrooms;
+    //                     //}
+    //                 }
+    //                 else
                     currentIndex=(currentIndex+1)%totalCountOfMushrooms;
                     GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[currentIndex].transform.position+new Vector3(0,-0.2f,0);
                     GameManager.AimUIDisplay.SetActive(true);
-                   lastMovedTarget=0;
+                    lastMovedTarget=0;
                 }
             }             
         }
@@ -319,7 +365,7 @@ void Update(){
             lastMovedTarget+=Time.deltaTime;
         }
 
-        if(!_index.IsExtended&&!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended){
+        if(!_index.IsExtended&&!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _hand.GrabStrength>grabParam){
             if(!AimAnimator.GetBool("Locked")){
                 SelectedObject=GameManager.AllMushrooms[currentIndex];
                 selectedComponentMushroonInfoScript = SelectedObject.GetComponent<MushroomInfo>();
@@ -338,7 +384,8 @@ void Update(){
         AimAnimator.SetBool("Rotate",true);
         GameManager.AimUIDisplay.SetActive(false);
     }
-     startPosfinMovementCheckValue = _hand.Direction.x;
-    }
-   
+    startPosfinMovementCheckValue = _hand.Direction.x;
 }
+
+}
+

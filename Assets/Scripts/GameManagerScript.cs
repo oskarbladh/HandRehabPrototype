@@ -39,6 +39,11 @@ public class GameManagerScript : MonoBehaviour
 
     private int score=0;
 
+    public GameObject LeapHandRight;
+    public GameObject LeapHandLeft;
+
+    public GameObject WarningScreen;
+
     //GameObject TextUI;
 
     // public void setObjectIsSelected(bool value){
@@ -76,7 +81,16 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //isLeft = isLeftToggle.isOn;
+        if(LeapHandLeft.activeSelf || LeapHandRight.activeSelf){
+            Time.timeScale = 1;
+            WarningScreen.SetActive(false);
+        }
+        else
+        {
+            //Time.timeScale =0;
+            WarningScreen.SetActive(true);
+        }
+        isLeft = isLeftToggle.isOn;
         if(mushRoomData!=null)
         if(Name.text != mushRoomData.mName)
         {

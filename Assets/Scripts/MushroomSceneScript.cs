@@ -15,6 +15,12 @@ public class MushroomSceneScript : MonoBehaviour
     Vector3 initialPosition;
     Rigidbody mushroomPhysics;
 
+    float timer = 2f;
+
+    float elapsedTime = 0f;
+
+    bool scalingIsDone=false;
+
     void Start()
     {
          GameManager=GameManagerScript.instance;
@@ -50,7 +56,7 @@ public class MushroomSceneScript : MonoBehaviour
       
         
     }
-
+    
     private void OnTriggerEnter(Collider triggerCollider) {
         if(triggerCollider.CompareTag("Got In Range")){
             //Camera Movement
@@ -64,6 +70,43 @@ public class MushroomSceneScript : MonoBehaviour
         else if(triggerCollider.CompareTag("Good Basket"))
         {
             
+            // // if(!(GameManager.MushroomsInRange.Count > 0)){
+            // // GameManager.settingUpLerpValues(true,true,new Vector3(0,1.09899998f,-0.568000019f),70);
+            // // }
+            // // GameManager.objectIsWithinRadius=false;
+            // if(GameManager.MushroomsInRange.Contains(this.gameObject))
+            //     GameManager.updateScore();
+            // //remove the object from both AllMushrooms and MushroomsInRange
+            // transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            // GameManager.MushroomsInRange.Remove(this.gameObject);
+            // GameManager.AllMushrooms.Remove(this.gameObject);
+            // GameManager.explorationMode=true;
+            // GameManager.objectIsSelected=false;
+           
+            // //Destroy(this.gameObject);'
+            // // this.gameObject.transform.parent = triggerCollider.gameObject.transform;
+            // // Destroy(GetComponent<CapsuleCollider>());
+            // // Destroy(GetComponent<InteractionBehaviour>());
+            // Destroy(this.gameObject);
+            if(!scalingIsDone){
+                transform.localScale *=0.8f;
+                scalingIsDone = true;
+            }
+        
+        }
+        /////////////////////////////////////////////////////////////////////////
+        ////////OUT OF RANGE IS HANDLED IN HandleCameraWhenGotOutOfRange/////////
+        /////////////////////////////////////////////////////////////////////////
+    }
+
+    private void OnTriggerStay(Collider other) {
+         if(other.gameObject.tag=="Good Basket")
+        {
+            if(elapsedTime<timer){
+                elapsedTime+=Time.deltaTime;
+                Debug.Log("TIME:"+elapsedTime);
+                return;
+            }
             // if(!(GameManager.MushroomsInRange.Count > 0)){
             // GameManager.settingUpLerpValues(true,true,new Vector3(0,1.09899998f,-0.568000019f),70);
             // }
@@ -76,16 +119,16 @@ public class MushroomSceneScript : MonoBehaviour
             GameManager.AllMushrooms.Remove(this.gameObject);
             GameManager.explorationMode=true;
             GameManager.objectIsSelected=false;
-           
+            elapsedTime=0;
             //Destroy(this.gameObject);'
-            // this.gameObject.transform.parent = triggerCollider.gameObject.transform;
-            // Destroy(GetComponent<CapsuleCollider>());
+            this.gameObject.tag = "CollectedMushroom";
+            this.gameObject.transform.parent = other.gameObject.transform;
+            Destroy(GetComponent<InteractionBehaviour>());
+            Destroy(this);
             // Destroy(GetComponent<InteractionBehaviour>());
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+
         }
-        /////////////////////////////////////////////////////////////////////////
-        ////////OUT OF RANGE IS HANDLED IN HandleCameraWhenGotOutOfRange/////////
-        /////////////////////////////////////////////////////////////////////////
     }
 
 }

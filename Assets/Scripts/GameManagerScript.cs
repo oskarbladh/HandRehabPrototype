@@ -22,6 +22,8 @@ public class GameManagerScript : MonoBehaviour
     public bool cameraMovementNeeded=false;
     public bool mushroomGotOut=false;
     public bool objectIsSelected=false;
+
+    public MushroomInfo selectedComponentMushroonInfoScript=null;
     public bool explorationMode=true;
     public float startTime;
     public Vector3 startCamPos;
@@ -29,6 +31,8 @@ public class GameManagerScript : MonoBehaviour
     public float journeyLength;
 
     public GameObject Instructions;
+
+
 
     //picked mushroom data to display on the canvas
 
@@ -43,6 +47,8 @@ public class GameManagerScript : MonoBehaviour
     public GameObject LeapHandLeft;
 
     public GameObject WarningScreen;
+
+    public int currentIndex = 0;
 
     //GameObject TextUI;
 
@@ -59,6 +65,7 @@ public class GameManagerScript : MonoBehaviour
     { 
         instance = this; 
     } 
+    isLeft = isLeftToggle.isOn;
     }
     // Start is called before the first frame update
     void Start()
@@ -128,7 +135,7 @@ public class GameManagerScript : MonoBehaviour
     }
 
     public void showInstructions(){
-        Instructions.SetActive(!Instructions.active);
+        Instructions.SetActive(!Instructions.activeSelf);
     }
 
     public void closeInstructions(){

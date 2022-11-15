@@ -34,14 +34,14 @@ public class MushroomPointAndPickup : MonoBehaviour
     private float journeyLength;
     //private bool journeyEnd=false;
 
-    private bool raycastOff=false;
+    //private bool raycastOff=false;
 
-    private MushroomInfo selectedComponentMushroonInfoScript;
+  
     
     private float startPosfinMovementCheckValue;
     bool finMovementDone;
     Vector3 handPosition=new Vector3(0,0,0);
-    int currentIndex = 0;
+   
     int totalCountOfMushrooms=0;
 
     public float cooldown = 2f;
@@ -52,9 +52,12 @@ public class MushroomPointAndPickup : MonoBehaviour
     public float finParam = 0.08f;
 
     public float grabParam = 0.8f;
-    private bool leftHand;
+    public bool isLeftHand;
 
-    private bool rightHand;
+    public bool isRightHand;
+
+    bool leftHand;
+    bool rightHand;
 
     private bool pointedLeft;
     void Start()
@@ -77,9 +80,11 @@ public class MushroomPointAndPickup : MonoBehaviour
         // }
         //laserLineRenderer=this.GetComponent<LineRenderer>();
         AimAnimator=GameManager.AimUIDisplay.transform.Find("Image").GetComponent<Animator>();
-        GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[currentIndex].transform.position+new Vector3(0,-0.2f,0);
+        GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position+new Vector3(0,-0.2f,0);
         totalCountOfMushrooms = GameManager.AllMushrooms.Count;
         GameManager.AimUIDisplay.SetActive(true);
+        leftHand = isLeftHand && GameManager.isLeft;
+        rightHand =isRightHand && !GameManager.isLeft;
     }
 
 
@@ -269,9 +274,8 @@ IEnumerator WaitFunction(){
 }
 
 void Update(){
-    leftHand = _hand.IsLeft && GameManager.isLeft;
-    rightHand =!_hand.IsLeft && !GameManager.isLeft;
-          
+   leftHand = isLeftHand && GameManager.isLeft;
+   rightHand =isRightHand && !GameManager.isLeft;
 }
     void FixedUpdate(){
         //To determine whether movement is done based on the distance
@@ -281,7 +285,25 @@ void Update(){
         } else if(rightHand){
             executeHandFuncitionalities();
         }else{
-            //Dont do anything//BLANK
+            //if it is left hand -> write the functionality for right hand and vice versa
+           
+            float disDiffForOtherHand = Mathf.Abs(startPosfinMovementCheckValue - _hand.Direction.x);
+             Debug.Log("Other hand"+disDiffForOtherHand);
+             if(GameManager.objectIsSelected && GameManager.selectedComponentMushroonInfoScript!=null){
+             //ObjectIsPointed=null;
+            // Debug.Log("Object Selected");
+            if(AimAnimator.GetBool("Locked")){
+                 if(GameManager.selectedComponentMushroonInfoScript.isCoveredByLeaves && _hand.PalmNormal.y>0.25 && _hand.PalmNormal.y<0.6){
+                    if(_middle.IsExtended && _ring.IsExtended && _pinky.IsExtended && _index.IsExtended){
+                            if(disDiffForOtherHand > 0.07) // checking if distance is less than required distance.
+                            {
+                                Debug.Log("Fin movement done");
+                                GameManager.selectedComponentMushroonInfoScript.setLeavesAnimation();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -297,13 +319,13 @@ void Update(){
         Debug.Log("Fin Right movement done:"+_hand.Direction.x);
     }
     if(GameManager.explorationMode){
-        if(GameManager.objectIsSelected && selectedComponentMushroonInfoScript!=null){
+        if(GameManager.objectIsSelected && GameManager.selectedComponentMushroonInfoScript!=null){
             if(_hand.PalmNormal.y>rotateParam){
-                    if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && !_index.IsExtended){
+                    if(!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && !_index.IsExtended && !GameManager.selectedComponentMushroonInfoScript.isCoveredByLeaves){
                         SelectedObject.transform.position = GameManager.MushroomTranslatePoint.position;
                         GameManager.AimUIDisplay.SetActive(false);
-                        //currentIndex=(currentIndex+1)%totalCountOfMushrooms;
-                        // GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[currentIndex].transform.position+new Vector3(0,-0.2f,0);
+                        //GameManager.GameManager.currentIndex=(GameManager.GameManager.currentIndex+1)%totalCountOfMushrooms;
+                        // GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.GameManager.currentIndex].transform.position+new Vector3(0,-0.2f,0);
                         GameManager.explorationMode=false;
                         // GameManager.AimUIDisplay.SetActive(false);
                         //  // Keep a note of the time the movement started.
@@ -321,6 +343,7 @@ void Update(){
                     AimedObject=null;
                     GameManager.explorationMode=true;
                     AimAnimator.SetBool("Locked",false);
+                    GameManager.selectedComponentMushroonInfoScript=null;
                     AimAnimator.SetBool("Rotate",true);
                     lastMovedTarget=0;
                 }
@@ -328,13 +351,13 @@ void Update(){
         else
         {
         GameManager.AimUIDisplay.SetActive(true);
-        GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[currentIndex].transform.position+new Vector3(0,-0.2f,0);
+        GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position+new Vector3(0,-0.2f,0);
         if(lastMovedTarget>cooldown){
         if(_hand.PalmNormal.y>-0.5 && _hand.PalmNormal.y<0.5f && !AimAnimator.GetBool("Locked")){
             if(_middle.IsExtended && _ring.IsExtended && _pinky.IsExtended && _index.IsExtended){
                 if(disdirect > finParam) // checking if distance is less than required distance.
                 {
-                    Debug.Log("Fin movement done"+pointedLeft+"Index:"+currentIndex);
+                    Debug.Log("Fin movement done"+pointedLeft+"Index:"+GameManager.currentIndex);
     //                  if(_hand.Direction.x<-0.5f)
     // {
     //     pointedLeft = true;
@@ -346,15 +369,15 @@ void Update(){
     // }
     //                 //Debug.Log("Fin movement distance:"+disdirect);
     //                 if(pointedLeft){
-    //                     // if(currentIndex==0){
-    //                     //     currentIndex=(totalCountOfMushrooms-1)%totalCountOfMushrooms;
+    //                     // if(GameManager.currentIndex==0){
+    //                     //     GameManager.currentIndex=(totalCountOfMushrooms-1)%totalCountOfMushrooms;
     //                     // }else{
-    //                         currentIndex=(currentIndex-1)%totalCountOfMushrooms;
+    //                         GameManager.currentIndex=(GameManager.currentIndex-1)%totalCountOfMushrooms;
     //                     //}
     //                 }
     //                 else
-                    currentIndex=(currentIndex+1)%totalCountOfMushrooms;
-                    GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[currentIndex].transform.position+new Vector3(0,-0.2f,0);
+                    GameManager.currentIndex=(GameManager.currentIndex+1)%totalCountOfMushrooms;
+                    GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position+new Vector3(0,-0.2f,0);
                     GameManager.AimUIDisplay.SetActive(true);
                     lastMovedTarget=0;
                 }
@@ -364,11 +387,11 @@ void Update(){
         {
             lastMovedTarget+=Time.deltaTime;
         }
-
+        //Locking of the mushroom
         if(!_index.IsExtended&&!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _hand.GrabStrength>grabParam){
             if(!AimAnimator.GetBool("Locked")){
-                SelectedObject=GameManager.AllMushrooms[currentIndex];
-                selectedComponentMushroonInfoScript = SelectedObject.GetComponent<MushroomInfo>();
+                SelectedObject=GameManager.AllMushrooms[GameManager.currentIndex];
+                GameManager.selectedComponentMushroonInfoScript = SelectedObject.GetComponent<MushroomInfo>();
                 GameManager.objectIsSelected=true;
                 AimAnimator.SetBool("Locked",true);
                 AimAnimator.SetBool("Rotate",false);
@@ -382,6 +405,7 @@ void Update(){
         //examination mode code
         AimAnimator.SetBool("Locked",false);
         AimAnimator.SetBool("Rotate",true);
+        GameManager.selectedComponentMushroonInfoScript=null;
         GameManager.AimUIDisplay.SetActive(false);
     }
     startPosfinMovementCheckValue = _hand.Direction.x;

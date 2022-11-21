@@ -11,6 +11,7 @@ TagManager:
   - Good Basket
   - Wall
   - CollectedMushroom
+  - MushroomPlatform
   layers:
   - Default
   - TransparentFX

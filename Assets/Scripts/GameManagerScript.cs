@@ -7,139 +7,259 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public static GameManagerScript instance;
-    [SerializeField]
-    GameObject PlayerCanvas;
-    public GameObject AimUIDisplay;
-    public GameObject MushroomCanvas;
-    public List<GameObject> AllMushrooms;
-    public List<GameObject> MushroomsInRange;
-    GameObject MainCamera;
-    public Toggle isLeftToggle;
-    public bool isLeft;
-    public MushroomInfo mushRoomData=null;
-    public Transform MushroomTranslatePoint;
-    public bool cameraMovementNeeded=false;
-    public bool mushroomGotOut=false;
-    public bool objectIsSelected=false;
+  public static GameManagerScript instance;
+  [SerializeField]
+  GameObject PlayerCanvas;
+  public GameObject AimUIDisplay;
+  public GameObject MushroomCanvas;
+  public List<GameObject> AllMushrooms;
+  public List<GameObject> MushroomsInRange;
 
-    public MushroomInfo selectedComponentMushroonInfoScript=null;
-    public bool explorationMode=true;
-    public float startTime;
-    public Vector3 startCamPos;
-    public Vector3 endCamPos;
-    public float journeyLength;
+  public List<GameObject> MushroomsInBasket;
+  GameObject MainCamera;
+  public Toggle isLeftToggle;
+  public bool isLeft;
+  public MushroomInfo mushRoomData = null;
+  public Transform MushroomTranslatePoint;
+  public bool cameraMovementNeeded = false;
+  public bool mushroomGotOut = false;
+  public bool objectIsSelected = false;
 
-    public GameObject Instructions;
+  public MushroomInfo selectedComponentMushroonInfoScript = null;
+  public bool explorationMode = true;
+  public float startTime;
+  public Vector3 startCamPos;
+  public Vector3 endCamPos;
+  public float journeyLength;
+
+  public GameObject Instructions;
 
 
 
-    //picked mushroom data to display on the canvas
+  //picked mushroom data to display on the canvas
 
-    
-    public Text Name;
-    public Text Description;
-    TextMeshProUGUI Score;
 
-    private int score=0;
+  public Text Name;
+  public Text Description;
+  TextMeshProUGUI Score;
 
-    public GameObject LeapHandRight;
-    public GameObject LeapHandLeft;
+  private int score = 0;
 
-    public GameObject WarningScreen;
+  public GameObject LeapHandRight;
+  public GameObject LeapHandLeft;
 
-    public int currentIndex = 0;
+  public GameObject WarningScreen;
 
-    //GameObject TextUI;
+  public GameObject RightBasket;
 
-    // public void setObjectIsSelected(bool value){
-    //     GameManagerScript.instance.objectIsSelected =value;
-    // }
+  public GameObject LeftBasket;
 
-    void Awake(){
-         if (instance != null && instance != this) 
-    { 
-        Destroy(this); 
-    } 
-    else 
-    { 
-        instance = this; 
-    } 
+
+  public int currentIndex = 0;
+
+  public string levelName = "5";
+
+  bool levelCompleted = false;
+
+  //GameObject TextUI;
+
+  // public void setObjectIsSelected(bool value){
+  //     GameManagerScript.instance.objectIsSelected =value;
+  // }
+
+  void Awake()
+  {
+    if (instance != null && instance != this)
+    {
+      Destroy(this);
+    }
+    else
+    {
+      instance = this;
+    }
     isLeft = isLeftToggle.isOn;
-    }
-    // Start is called before the first frame update
-    void Start()
+    DontDestroyOnLoad(gameObject);
+  }
+  // Start is called before the first frame update
+  void Start()
+  {
+    MainCamera = GameObject.Find("Main Camera");
+    //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
+    Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
+  }
+
+  public void updateScore()
+  {
+    if (mushRoomData != null)
     {
-        MainCamera=GameObject.Find("Main Camera");
-        //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
-        Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
+      score += mushRoomData.pointsForTheMushroom;
     }
+  }
 
-    public void updateScore(){
-       if(mushRoomData!=null)
-       {
-        if(mushRoomData.poison)
-            score-=2;
-        else
-            score+=1;
-       }
-    }
-
-    // Update is called once per frame
-    void Update()
+  // Update is called once per frame
+  void Update()
+  {
+    if (LeapHandLeft.activeSelf || LeapHandRight.activeSelf)
     {
-        if(LeapHandLeft.activeSelf || LeapHandRight.activeSelf){
-            Time.timeScale = 1;
-            WarningScreen.SetActive(false);
-        }
-        else
+      Time.timeScale = 1;
+      WarningScreen.SetActive(false);
+    }
+    else
+    {
+      //Time.timeScale =0;
+      WarningScreen.SetActive(true);
+    }
+    isLeft = isLeftToggle.isOn;
+    if (mushRoomData != null)
+      if (Name.text != mushRoomData.mName)
+      {
+        Name.text = "Name:" + mushRoomData.mName;
+        Description.text = "Description:" + mushRoomData.mProperties;
+      }
+    switch (levelName)
+    {
+      case "1":
         {
-            //Time.timeScale =0;
-            WarningScreen.SetActive(true);
+          Score.gameObject.SetActive(false);
+          //check for 5 good mushrooms collided with the platform where the mushroom lands
+          if (AllMushrooms.Count == 0)
+          {
+            //Transition to next level
+            //ScenManager.LoadScene("");
+          }
         }
-        isLeft = isLeftToggle.isOn;
-        if(mushRoomData!=null)
-        if(Name.text != mushRoomData.mName)
+        break;
+      case "2":
         {
-            Name.text = "Name:"+mushRoomData.mName;
-            Description.text = "Description:"+mushRoomData.mProperties;
+          Score.gameObject.SetActive(false);
+          Name.text = "";
+          Description.text = "";
+          //check for 5 mushrooms in basket and Transition to next level
+          if (MushroomsInBasket.Count == 5)
+          {
+            //Transition to next level
+            //ScenManager.LoadScene("");
+          }
         }
-        Score.text="Score: "+(score);
-
-            if(!(MushroomsInRange.Count > 0)){
-                settingUpLerpValues(true,true,new Vector3(0,1.0998f,-0.5680f),75);
-                //objectIsSelected=false;
+        break;
+      case "3":
+        {
+          Score.text = "Score: " + (score);
+          if (score == 500)
+          {
+            Debug.Log("Level completed next level");
+          }
+          Name.text = "";
+          Description.text = "";
+          //Transition to next level
+        }
+        break;
+      case "4":
+        {
+          Score.gameObject.SetActive(false);
+          //check for 5 mushrooms in basket and Transition to next level
+          if (MushroomsInBasket.Count == 5)
+          {
+            //Transition to next level
+            //ScenManager.LoadScene("");
+          }
+        }
+        break;
+      case "5":
+        {
+          Score.gameObject.SetActive(false);
+          //check for 5 mushrooms present in the scene without leaves and Transition to next level
+          foreach (var mushroom in AllMushrooms)
+          {
+            if (!mushroom.GetComponent<MushroomInfo>().isCoveredByLeaves)
+            {
+              levelCompleted = true;
             }
             else
             {
-                settingUpLerpValues(true,false,new Vector3(0,0.8889f,-0.7440f),45);
+              levelCompleted = false;
             }
-
-        //Mushroom Spawning with all props and also Object pooling should be handled in the script
+          }
+          if (levelCompleted)
+          {
+            //Transition to next level
+            //ScenManager.LoadScene("");
+          }
+        }
+        break;
+      case "6":
+        {
+          Score.gameObject.SetActive(false);
+          //check for 5 mushrooms in basket and Transition to next level
+          if (MushroomsInBasket.Count == 5)
+          {
+            //Transition to next level
+            //ScenManager.LoadScene("");
+          }
+        }
+        break;
+      case "7":
+        {
+          Score.text = "Score: " + (score);
+          if (MushroomsInBasket.Count == 5 && score == 500)
+          {
+            //Transition to next level
+            //ScenManager.LoadScene("");
+          }
+        }
+        break;
     }
 
 
-    public void settingUpLerpValues(bool cameraMovementNeeded,bool mushroomGotOut,Vector3 endPos,int fieldOfView){
-        this.cameraMovementNeeded = cameraMovementNeeded;
-        this.mushroomGotOut = mushroomGotOut;
-        startTime = Time.time;
-        startCamPos=MainCamera.transform.position;
-        endCamPos=endPos;
-        MainCamera.GetComponent<Camera>().fieldOfView = fieldOfView;
-        journeyLength = Vector3.Distance(startCamPos, endCamPos);
+    if (!(MushroomsInRange.Count > 0))
+    {
+      settingUpLerpValues(true, true, new Vector3(0, 1.0998f, -0.5680f), 75);
+      //objectIsSelected=false;
+    }
+    else
+    {
+      settingUpLerpValues(true, false, new Vector3(0, 0.8889f, -0.7440f), 45);
+    }
+    if (isLeft)
+    {
+      LeftBasket.SetActive(true);
+      RightBasket.SetActive(false);
+    }
+    else
+    {
+      LeftBasket.SetActive(false);
+      RightBasket.SetActive(true);
     }
 
-    public void ResetLevel(){
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-    }
+    //Mushroom Spawning with all props and also Object pooling should be handled in the script
+  }
 
-    public void showInstructions(){
-        Instructions.SetActive(!Instructions.activeSelf);
-    }
 
-    public void closeInstructions(){
-        Instructions.SetActive(false);
-    }
+  public void settingUpLerpValues(bool cameraMovementNeeded, bool mushroomGotOut, Vector3 endPos, int fieldOfView)
+  {
+    this.cameraMovementNeeded = cameraMovementNeeded;
+    this.mushroomGotOut = mushroomGotOut;
+    startTime = Time.time;
+    startCamPos = MainCamera.transform.position;
+    endCamPos = endPos;
+    MainCamera.GetComponent<Camera>().fieldOfView = fieldOfView;
+    journeyLength = Vector3.Distance(startCamPos, endCamPos);
+  }
+
+  public void ResetLevel()
+  {
+    Scene scene = SceneManager.GetActiveScene();
+    SceneManager.LoadScene(scene.name);
+  }
+
+  public void showInstructions()
+  {
+    Instructions.SetActive(!Instructions.activeSelf);
+  }
+
+  public void closeInstructions()
+  {
+    Instructions.SetActive(false);
+  }
 
 }

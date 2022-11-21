@@ -21,7 +21,7 @@ public class HandleCameraWhenGotOutOfRange : MonoBehaviour
             //other.gameObject.GetComponent<Rigidbody>().isKinematic=false;
             //Cameramovement
             //MainCamera.transform.position = new Vector3(0,0.970000029f,-0.769999981f);
-            //Debug.Log("Velocity of the mushroom:"+other.gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+            Debug.Log("Velocity of the mushroom:"+other.gameObject.GetComponent<Rigidbody>().velocity.magnitude);
             GameManager.explorationMode=true;
             GameManager.objectIsSelected=false;
             if(GameManager.MushroomsInRange.Count>0)

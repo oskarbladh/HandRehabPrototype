@@ -7,13 +7,13 @@ public class LeavesLookAt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.LookAt(Camera.main.transform);
-        Debug.Log("transform:"+transform.rotation);
+        Debug.Log("transform:" + transform.rotation);
     }
 }

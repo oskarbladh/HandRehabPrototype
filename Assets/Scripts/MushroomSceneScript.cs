@@ -110,7 +110,7 @@ public class MushroomSceneScript : MonoBehaviour
       if (elapsedTime < timer)
       {
         elapsedTime += Time.deltaTime;
-        Debug.Log("TIME:" + elapsedTime);
+        //Debug.Log("TIME:" + elapsedTime);
         return;
       }
       // if(!(GameManager.MushroomsInRange.Count > 0)){

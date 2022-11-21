@@ -5,8 +5,10 @@ using Leap;
 using Leap.Unity;
 
 ///<summary>
-///Creates Raycast from the pointer finger of the hand to which the script is attached.
-///Lerps the mushroom nearby to the hand, if it is pointed.
+///Use Fin motion to change targets and lock by clenching your fist and rotate your hand 
+///and the mushroom comes to the grabbing range
+///Leaves removal functionality is also done here
+///Other dominent hand code is also written here
 ///</summary>
 public class MushroomPointAndPickup : MonoBehaviour
 {
@@ -68,6 +70,8 @@ public class MushroomPointAndPickup : MonoBehaviour
   bool targetMovementBool;
 
   bool comeToGrabRangeBool;
+
+  bool pointedCenter = true;
   void Start()
   {
     GameManager = GameManagerScript.instance;
@@ -284,9 +288,11 @@ public class MushroomPointAndPickup : MonoBehaviour
 
   void Update()
   {
+    //change the functionality for left or right hand as important one
     leftHand = _hand.IsLeft && isLeftHand && GameManager.isLeft;
     rightHand = !_hand.IsLeft && isRightHand && !GameManager.isLeft;
 
+    ////Game code and functionalities based on the levels
     switch (GameManager.levelName)
     {
       case "1":
@@ -303,7 +309,7 @@ public class MushroomPointAndPickup : MonoBehaviour
           finMovementBool = false;
           leavesMovementBool = false;
           comeToGrabRangeBool = false;
-          Debug.Log("Executed");
+          //Debug.Log("Executed");
         }
         break;
       case "3":
@@ -351,10 +357,10 @@ public class MushroomPointAndPickup : MonoBehaviour
         break;
     }
   }
+
   void FixedUpdate()
   {
-    //To determine whether movement is done based on the distance
-    Debug.Log("HandY:" + _hand.PalmNormal.y);
+    ////execute code for the rehab hand which needs exercise
     if (leftHand)
     {
       executeHandFuncitionalities();
@@ -365,11 +371,11 @@ public class MushroomPointAndPickup : MonoBehaviour
     }
     else
     {
-      //if it is left hand -> write the functionality for right hand and vice versa
+      ////if it is left hand -> write the functionality for right hand and vice versa
       if (leavesMovementBool)
       {
         float disDiffForOtherHand = Mathf.Abs(startPosfinMovementCheckValue - _hand.Direction.x);
-        Debug.Log("Other hand" + disDiffForOtherHand);
+        //Debug.Log("Other hand" + disDiffForOtherHand);
         if (GameManager.objectIsSelected && GameManager.selectedComponentMushroonInfoScript != null)
         {
           //ObjectIsPointed=null;
@@ -382,7 +388,7 @@ public class MushroomPointAndPickup : MonoBehaviour
               {
                 if (disDiffForOtherHand > 0.07) // checking if distance is less than required distance.
                 {
-                  Debug.Log("Fin movement done");
+                  //Debug.Log("Fin movement done");
                   GameManager.selectedComponentMushroonInfoScript.setLeavesAnimation();
                 }
               }
@@ -393,19 +399,31 @@ public class MushroomPointAndPickup : MonoBehaviour
     }
   }
 
+  ///All the hand related functionalities are written here
   void executeHandFuncitionalities()
   {
+    //to determine the distance between last checkposition and current hands position
     float disdirect = Mathf.Abs(startPosfinMovementCheckValue - _hand.Direction.x);
-    if (_hand.Direction.x < -0.5f)
+
+    //variable set for Fin movement for traversing target to left or right
+    if (_hand.Direction.x < -0.4f)
     {
       pointedLeft = true;
+      pointedCenter = false;
       Debug.Log("Fin Left movement done:" + _hand.Direction.x);
     }
-    else if (_hand.Direction.x > 0.5f)
+    else if (_hand.Direction.x > 0.3f)
     {
       pointedLeft = false;
+      pointedCenter = false;
       Debug.Log("Fin Right movement done:" + _hand.Direction.x);
     }
+    else
+    {
+      pointedCenter = true;
+    }
+
+
     if (GameManager.explorationMode)
     {
       //Code to be executed when the object is in locked state
@@ -418,17 +436,7 @@ public class MushroomPointAndPickup : MonoBehaviour
           {
             SelectedObject.transform.position = GameManager.MushroomTranslatePoint.position;
             GameManager.AimUIDisplay.SetActive(false);
-            //GameManager.GameManager.currentIndex=(GameManager.GameManager.currentIndex+1)%totalCountOfMushrooms;
-            // GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.GameManager.currentIndex].transform.position+new Vector3(0,-0.2f,0);
             GameManager.explorationMode = false;
-            // GameManager.AimUIDisplay.SetActive(false);
-            //  // Keep a note of the time the movement started.
-            // startTime = Time.time;
-            // startMarker=SelectedObject.transform;
-            // endMarker=GameManager.MushroomTranslatePoint.position;
-
-            // // // Calculate the journey length.
-            // journeyLength = Vector3.Distance(startMarker.position, endMarker);
             lastMovedTarget = 0;
           }
         }
@@ -471,32 +479,44 @@ public class MushroomPointAndPickup : MonoBehaviour
                   //     Debug.Log("Fin Right movement done:"+_hand.Direction.x);
                   // }
                   //                 //Debug.Log("Fin movement distance:"+disdirect);
-                  //                 if(pointedLeft){
-                  //                     // if(GameManager.currentIndex==0){
-                  //                     //     GameManager.currentIndex=(totalCountOfMushrooms-1)%totalCountOfMushrooms;
-                  //                     // }else{
-                  //                         GameManager.currentIndex=(GameManager.currentIndex-1)%totalCountOfMushrooms;
-                  //                     //}
-                  //                 }
-                  //                 else
-                  GameManager.currentIndex = (GameManager.currentIndex + 1) % totalCountOfMushrooms;
-                  GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position + new Vector3(0, -0.2f, 0);
-                  GameManager.AimUIDisplay.SetActive(true);
-                  lastMovedTarget = 0;
+                  if (!pointedCenter)
+                  {
+                    if (pointedLeft)
+                    {
+                      if (GameManager.currentIndex == 0)
+                      {
+                        GameManager.currentIndex = (totalCountOfMushrooms - 1) % totalCountOfMushrooms;
+                      }
+                      else
+                      {
+                        GameManager.currentIndex = (GameManager.currentIndex - 1) % totalCountOfMushrooms;
+                      }
+                    }
+                    else
+                    {
+                      GameManager.currentIndex = (GameManager.currentIndex + 1) % totalCountOfMushrooms;
+                    }
+
+                    //GameManager.currentIndex = (GameManager.currentIndex + 1) % totalCountOfMushrooms;
+                    GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position + new Vector3(0, -0.2f, 0);
+                    GameManager.AimUIDisplay.SetActive(true);
+                    lastMovedTarget = 0;
+                  }
                 }
               }
             }
           }
           else
           {
+            //delay time variable updated for seamless transition from one target to another
             lastMovedTarget += Time.deltaTime;
           }
         }
         else
         {
-
           GameManager.AimUIDisplay.SetActive(false);
         }
+
         //Locking of the mushroom
         if (targetMovementBool && (!_index.IsExtended && !_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _hand.GrabStrength > grabParam && _hand.PalmNormal.y < rotateParam))
         {

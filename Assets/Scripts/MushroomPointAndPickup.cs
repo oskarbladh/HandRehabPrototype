@@ -379,7 +379,7 @@ public class MushroomPointAndPickup : MonoBehaviour
         if (GameManager.objectIsSelected && GameManager.selectedComponentMushroonInfoScript != null)
         {
           //ObjectIsPointed=null;
-          //Debug.Log("Object Selected");
+          Debug.Log("Object Selected");
           if (AimAnimator.GetBool("Locked"))
           {
             if (GameManager.selectedComponentMushroonInfoScript.isCoveredByLeaves && _hand.PalmNormal.y > 0.4 && _hand.PalmNormal.y < 0.8)
@@ -388,7 +388,7 @@ public class MushroomPointAndPickup : MonoBehaviour
               {
                 if (disDiffForOtherHand > 0.07) // checking if distance is less than required distance.
                 {
-                  //Debug.Log("Fin movement done");
+                  Debug.Log("Fin movement done");
                   GameManager.selectedComponentMushroonInfoScript.setLeavesAnimation();
                 }
               }
@@ -399,7 +399,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     }
   }
 
-  ///All the hand related functionalities are written here
+  ///All the hand related functionalities are written here except the non important hand
   void executeHandFuncitionalities()
   {
     //to determine the distance between last checkposition and current hands position
@@ -429,11 +429,14 @@ public class MushroomPointAndPickup : MonoBehaviour
       //Code to be executed when the object is in locked state
       if (GameManager.objectIsSelected && GameManager.selectedComponentMushroonInfoScript != null)
       {
+        //Debug.Log("Object Selected outside outside");
         //Arm twist/rotate
         if (comeToGrabRangeBool && _hand.PalmNormal.y > rotateParam)
         {
+          Debug.Log("Object Selected outside");
           if (!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && !_index.IsExtended && !GameManager.selectedComponentMushroonInfoScript.isCoveredByLeaves)
           {
+            Debug.Log("Object Selected inside");
             SelectedObject.transform.position = GameManager.MushroomTranslatePoint.position;
             GameManager.AimUIDisplay.SetActive(false);
             GameManager.explorationMode = false;
@@ -459,7 +462,7 @@ public class MushroomPointAndPickup : MonoBehaviour
         if (finMovementBool)
         {
           GameManager.AimUIDisplay.SetActive(true);
-          GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position + new Vector3(0, -0.2f, 0);
+          GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex % GameManager.AllMushrooms.Count].transform.position + new Vector3(0, -0.2f, 0);
           if (lastMovedTarget > cooldown)
           {
             if (_hand.PalmNormal.y > -0.5 && _hand.PalmNormal.y < 0.5f && !AimAnimator.GetBool("Locked"))
@@ -548,4 +551,3 @@ public class MushroomPointAndPickup : MonoBehaviour
   }
 
 }
-

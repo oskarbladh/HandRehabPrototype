@@ -363,7 +363,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3824071175618335029, guid: 5ca83692006c06b4a9e36b55be0416f3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5ca83692006c06b4a9e36b55be0416f3, type: 3}
 --- !u!4 &56985594 stripped
 Transform:
@@ -1735,7 +1736,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &262314587
 PrefabInstance:
@@ -1802,7 +1803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762461551039635907, guid: be179f1045046584a85e210dbb07a440, type: 3}
       propertyPath: m_Name
-      value: LeavesLeftBranch (2)
+      value: LeavesLeftBranch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be179f1045046584a85e210dbb07a440, type: 3}
@@ -1961,7 +1962,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: boletusNormal Variant (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 66204025, guid: df8e8cc6cfd96ea459971417329d72ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df8e8cc6cfd96ea459971417329d72ac, type: 3}
 --- !u!4 &286250874 stripped
 Transform:
@@ -2421,7 +2423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762461551039635907, guid: be179f1045046584a85e210dbb07a440, type: 3}
       propertyPath: m_Name
-      value: LeavesLeftBranch (4)
+      value: LeavesLeftBranch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be179f1045046584a85e210dbb07a440, type: 3}
@@ -2681,51 +2683,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &468317821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 468317823}
-  - component: {fileID: 468317822}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &468317822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468317821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94bcfc5c0aa86f43ba068a1186ac61a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundAudioClips: []
---- !u!4 &468317823
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468317821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 375.80643, y: 147.93054, z: -42.1214}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &477798390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,7 +2922,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: boletusNormal Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 66204025, guid: df8e8cc6cfd96ea459971417329d72ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df8e8cc6cfd96ea459971417329d72ac, type: 3}
 --- !u!4 &493852724 stripped
 Transform:
@@ -3212,7 +3170,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3824071175618335029, guid: 5ca83692006c06b4a9e36b55be0416f3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5ca83692006c06b4a9e36b55be0416f3, type: 3}
 --- !u!4 &513094177 stripped
 Transform:
@@ -4232,8 +4191,8 @@ MonoBehaviour:
   MushroomCanvas: {fileID: 1346677159}
   AllMushrooms:
   - {fileID: 1890260712}
-  - {fileID: 493852725}
   - {fileID: 795709988}
+  - {fileID: 493852725}
   - {fileID: 1637367533}
   - {fileID: 1609720001}
   - {fileID: 513094178}
@@ -4263,7 +4222,7 @@ MonoBehaviour:
   RightBasket: {fileID: 568173094}
   LeftBasket: {fileID: 319816860}
   currentIndex: 0
-  levelName: 1
+  levelName: 6
 --- !u!4 &690663649
 Transform:
   m_ObjectHideFlags: 0
@@ -4434,7 +4393,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -11.557
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4285705931439501413, guid: 8534f1412cec9df48afb2fca1bb93316, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8534f1412cec9df48afb2fca1bb93316, type: 3}
 --- !u!4 &795709987 stripped
 Transform:
@@ -4511,7 +4471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762461551039635907, guid: b23e9937dfa136f45a50cff98bbc3178, type: 3}
       propertyPath: m_Name
-      value: LeavesRightBranch (1)
+      value: LeavesRightBranch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e9937dfa136f45a50cff98bbc3178, type: 3}
@@ -7321,7 +7281,7 @@ GameObject:
   - component: {fileID: 1431105080}
   m_Layer: 0
   m_Name: LeapHands
-  m_TagString: MushroomPlatform
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7957,7 +7917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5940715065479800404, guid: 1d338fed0ed7df84a86c220153fbcc35, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8996589
+      value: 0.89965886
       objectReference: {fileID: 0}
     - target: {fileID: 5940715065479800404, guid: 1d338fed0ed7df84a86c220153fbcc35, type: 3}
       propertyPath: m_LocalScale.y
@@ -8085,7 +8045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5940715065479800438, guid: 1d338fed0ed7df84a86c220153fbcc35, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.91082853
+      value: 0.9108286
       objectReference: {fileID: 0}
     - target: {fileID: 5940715065479800438, guid: 1d338fed0ed7df84a86c220153fbcc35, type: 3}
       propertyPath: m_LocalScale.y
@@ -8269,7 +8229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8257087386648690841, guid: 1d338fed0ed7df84a86c220153fbcc35, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8174649
+      value: 0.81746495
       objectReference: {fileID: 0}
     - target: {fileID: 8257087386648690841, guid: 1d338fed0ed7df84a86c220153fbcc35, type: 3}
       propertyPath: m_LocalScale.y
@@ -8365,7 +8325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8257087386648690867, guid: 1d338fed0ed7df84a86c220153fbcc35, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8700356
+      value: 0.8700355
       objectReference: {fileID: 0}
     - target: {fileID: 8257087386648690867, guid: 1d338fed0ed7df84a86c220153fbcc35, type: 3}
       propertyPath: m_LocalScale.y
@@ -8630,7 +8590,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: boletusNormal Variant (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 66204025, guid: df8e8cc6cfd96ea459971417329d72ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df8e8cc6cfd96ea459971417329d72ac, type: 3}
 --- !u!4 &1609720000 stripped
 Transform:
@@ -8793,7 +8754,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.118
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4285705931439501413, guid: 8534f1412cec9df48afb2fca1bb93316, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8534f1412cec9df48afb2fca1bb93316, type: 3}
 --- !u!4 &1637367532 stripped
 Transform:
@@ -9297,7 +9259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762461551039635907, guid: be179f1045046584a85e210dbb07a440, type: 3}
       propertyPath: m_Name
-      value: LeavesLeftBranch (1)
+      value: LeavesLeftBranch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be179f1045046584a85e210dbb07a440, type: 3}
@@ -9875,7 +9837,8 @@ PrefabInstance:
       propertyPath: pointsForTheMushroom
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3937060310223131373, guid: 496235da009fb32479217483014c54a7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 496235da009fb32479217483014c54a7, type: 3}
 --- !u!4 &1890260711 stripped
 Transform:
@@ -10305,7 +10268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762461551039635907, guid: b23e9937dfa136f45a50cff98bbc3178, type: 3}
       propertyPath: m_Name
-      value: LeavesRightBranch (2)
+      value: LeavesRightBranch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e9937dfa136f45a50cff98bbc3178, type: 3}

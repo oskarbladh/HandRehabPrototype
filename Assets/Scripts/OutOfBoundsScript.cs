@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class OutOfBoundsScript : MonoBehaviour
 {
-    GameManagerScript GameManager;
+  GameManagerScript GameManager;
 
-    void Start()
+  void Start()
+  {
+    GameManager = GameManagerScript.instance;
+  }
+  private void OnCollisionEnter(Collision other)
+  {
+    if (other.gameObject.tag == "Mushroom")
     {
-        GameManager = GameManagerScript.instance;
+      GameManager.currentIndex = GameManager.currentIndex + 1 % GameManager.AllMushrooms.Count;
+      GameManager.AllMushrooms.Remove(other.gameObject);
+      Destroy(other.gameObject);
     }
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Mushroom")
-        {
-            GameManager.AllMushrooms.Remove(other.gameObject);
-            Destroy(other.gameObject);
-        }
-    }
+  }
 }

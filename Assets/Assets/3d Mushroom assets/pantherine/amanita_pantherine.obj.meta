@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: amanita_pantherine_3_amanita_pantherineMat
-    second: {fileID: 2100000, guid: 226a6ece71ea0dd4983eb9abd71f3150, type: 2}
+    second: {fileID: 2100000, guid: 41e56209366b7654f8bfa768d0afc29f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

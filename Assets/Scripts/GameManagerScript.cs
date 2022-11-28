@@ -54,12 +54,12 @@ public class GameManagerScript : MonoBehaviour
 
   public GameObject LeftBasket;
 
-
+  public GameObject WinningScreen;
   public int currentIndex = 0;
 
   public string levelName = "5";
 
-  bool levelCompleted = false;
+
 
   //GameObject TextUI;
 
@@ -78,7 +78,7 @@ public class GameManagerScript : MonoBehaviour
       instance = this;
     }
     isLeft = isLeftToggle.isOn;
-    DontDestroyOnLoad(gameObject);
+    //DontDestroyOnLoad(gameObject);
   }
   // Start is called before the first frame update
   void Start()
@@ -124,13 +124,18 @@ public class GameManagerScript : MonoBehaviour
           //check for 5 good mushrooms collided with the platform where the mushroom lands
           if (AllMushrooms.Count == 0)
           {
+            Time.timeScale = 0;
+
+            //Show winning screen
+
             //Transition to next level
-            //ScenManager.LoadScene("");
+            SceneManager.LoadScene("Level 2");
           }
         }
         break;
       case "2":
         {
+          Time.timeScale = 1;
           Score.gameObject.SetActive(false);
           Name.text = "";
           Description.text = "";
@@ -138,7 +143,8 @@ public class GameManagerScript : MonoBehaviour
           if (MushroomsInBasket.Count == 5)
           {
             //Transition to next level
-            //ScenManager.LoadScene("");
+            // SceneManager.LoadScene("");
+            SceneManager.LoadScene("Level 3");
           }
         }
         break;
@@ -148,6 +154,7 @@ public class GameManagerScript : MonoBehaviour
           if (score == 500)
           {
             Debug.Log("Level completed next level");
+            SceneManager.LoadScene("Level 4");
           }
           Name.text = "";
           Description.text = "";
@@ -158,10 +165,10 @@ public class GameManagerScript : MonoBehaviour
         {
           Score.gameObject.SetActive(false);
           //check for 5 mushrooms in basket and Transition to next level
-          if (MushroomsInBasket.Count == 5)
+          if (MushroomsInBasket.Count == 8)
           {
             //Transition to next level
-            //ScenManager.LoadScene("");
+            SceneManager.LoadScene("Level 5");
           }
         }
         break;
@@ -169,21 +176,10 @@ public class GameManagerScript : MonoBehaviour
         {
           Score.gameObject.SetActive(false);
           //check for 5 mushrooms present in the scene without leaves and Transition to next level
-          foreach (var mushroom in AllMushrooms)
-          {
-            if (!mushroom.GetComponent<MushroomInfo>().isCoveredByLeaves)
-            {
-              levelCompleted = true;
-            }
-            else
-            {
-              levelCompleted = false;
-            }
-          }
-          if (levelCompleted)
+          if (checkLeavesAllLeavesAreRemoved())
           {
             //Transition to next level
-            //ScenManager.LoadScene("");
+            SceneManager.LoadScene("Level 6");
           }
         }
         break;
@@ -191,20 +187,22 @@ public class GameManagerScript : MonoBehaviour
         {
           Score.gameObject.SetActive(false);
           //check for 5 mushrooms in basket and Transition to next level
-          if (MushroomsInBasket.Count == 5)
+          if (MushroomsInBasket.Count == 8)
           {
             //Transition to next level
-            //ScenManager.LoadScene("");
+            SceneManager.LoadScene("Level 7");
           }
         }
         break;
       case "7":
         {
           Score.text = "Score: " + (score);
-          if (MushroomsInBasket.Count == 5 && score == 500)
+          if (MushroomsInBasket.Count > 5 && score == 500)
           {
             //Transition to next level
-            //ScenManager.LoadScene("");
+            // SceneManager.LoadScene("");
+            WinningScreen.SetActive(true);
+            //Winning screen
           }
         }
         break;
@@ -214,6 +212,7 @@ public class GameManagerScript : MonoBehaviour
     if (!(MushroomsInRange.Count > 0))
     {
       settingUpLerpValues(true, true, new Vector3(0, 1.0998f, -0.5680f), 75);
+      explorationMode = true;
       //objectIsSelected=false;
     }
     else
@@ -260,6 +259,24 @@ public class GameManagerScript : MonoBehaviour
   public void closeInstructions()
   {
     Instructions.SetActive(false);
+  }
+
+  bool checkLeavesAllLeavesAreRemoved()
+  {
+    bool levelCleared = false;
+    foreach (var mushroom in AllMushrooms)
+    {
+      if (!mushroom.GetComponent<MushroomInfo>().isCoveredByLeaves)
+      {
+        levelCleared = true;
+      }
+      else
+      {
+        levelCleared = false;
+        break;
+      }
+    }
+    return levelCleared;
   }
 
 }

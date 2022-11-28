@@ -41,12 +41,12 @@ public class MushroomSceneScript : MonoBehaviour
     //     //  mushroomPhysics.isKinematic = false;
     //     Debug.Log("Position reseted");
     // }
-    if (transform.position.y < -6f)
-    {
-      transform.position = initialPosition;
-      //transform.rotation = initialtransform.rotation;
-      //Debug.Log(initialPosition);
-    }
+    // if (transform.position.y < -6f)
+    // {
+    //   transform.position = initialPosition;
+    //   //transform.rotation = initialtransform.rotation;
+    //   //Debug.Log(initialPosition);
+    // }
     //   if(transform.position.x<63f || transform.position.x>62f)
     //  {
     //     transform.position = initialPosition;
@@ -110,7 +110,7 @@ public class MushroomSceneScript : MonoBehaviour
       if (elapsedTime < timer)
       {
         elapsedTime += Time.deltaTime;
-        Debug.Log("TIME:" + elapsedTime);
+        //Debug.Log("TIME:" + elapsedTime);
         return;
       }
       // if(!(GameManager.MushroomsInRange.Count > 0)){
@@ -119,6 +119,7 @@ public class MushroomSceneScript : MonoBehaviour
       // GameManager.objectIsWithinRadius=false;
       if (GameManager.MushroomsInRange.Contains(this.gameObject))
         GameManager.updateScore();
+      Debug.Log("TIME:" + elapsedTime);
       //remove the object from both AllMushrooms and MushroomsInRange
       transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
       GameManager.MushroomsInRange.Remove(this.gameObject);

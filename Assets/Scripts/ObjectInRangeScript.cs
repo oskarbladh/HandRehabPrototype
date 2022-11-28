@@ -15,31 +15,35 @@ public class ObjectInRangeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         GameManager=GameManagerScript.instance;
+        GameManager = GameManagerScript.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    private void OnTriggerEnter(Collider other) {
-        
-        if(other.CompareTag("Mushroom")){
-            //Debug.Log("Triggered");
-           //GameManager.objectIsSelected=true;
-           //Add this gameObject to MushroomsInRange for handling the camera movement when multiple mushrooms come in range
-           if(!GameManager.MushroomsInRange.Contains(other.gameObject))
-           {
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Mushroom"))
+        {
+            Debug.Log("Triggered");
+            //GameManager.objectIsSelected=true;
+            //Add this gameObject to MushroomsInRange for handling the camera movement when multiple mushrooms come in range
+            if (!GameManager.MushroomsInRange.Contains(other.gameObject))
+            {
                 GameManager.MushroomsInRange.Add(other.gameObject);
-           }
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-         Debug.Log("Velocity of the mushroom:"+other.gameObject.GetComponent<Rigidbody>().velocity.magnitude);
-         if(other.CompareTag("Mushroom") && other.gameObject.GetComponent<Rigidbody>().velocity.magnitude<1.8){
-           GameManager.objectIsSelected=false;
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Velocity of the mushroom:" + other.gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+        if (other.CompareTag("Mushroom") && other.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 1.8)
+        {
+            GameManager.objectIsSelected = false;
             //remove the gameObject from MushroomsInRange
             other.gameObject.transform.position = musroomResetPoint.position;
         }

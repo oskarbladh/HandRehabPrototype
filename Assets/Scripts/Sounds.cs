@@ -6,17 +6,17 @@ using UnityEngine;
 [System.Serializable]
 public class Sounds
 {
-    public string name;
-    public AudioClip clip;
-    [Range(0f,1f)]
-    public float volume;
-    [Range(.1f,3f)]
-    public float pitch;
-    public float timeToPlay;
-    public bool timeredPlay=false;
-    public float timer;
+  public string name;
+  public AudioClip clip;
+  [Range(0f, 1f)]
+  public float volume;
+  [Range(.1f, 3f)]
+  public float pitch;
+  public float timeToPlay;
+  public bool timeredPlay = false;
+  public float timer;
 
-    [HideInInspector]
-    public AudioSource source;
-    public bool loop;
+  [HideInInspector]
+  public AudioSource source;
+  public bool loop;
 }

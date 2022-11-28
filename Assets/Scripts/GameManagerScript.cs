@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+///<summary>
+///This script has the game related functionality for it to be executed and also 
+///common variables used across all the scripts in the game.
+///</summary>
 public class GameManagerScript : MonoBehaviour
 {
   public static GameManagerScript instance;
@@ -34,11 +38,7 @@ public class GameManagerScript : MonoBehaviour
 
   public GameObject Instructions;
 
-
-
   //picked mushroom data to display on the canvas
-
-
   public Text Name;
   public Text Description;
   TextMeshProUGUI Score;
@@ -59,14 +59,6 @@ public class GameManagerScript : MonoBehaviour
 
   public string levelName = "5";
 
-
-
-  //GameObject TextUI;
-
-  // public void setObjectIsSelected(bool value){
-  //     GameManagerScript.instance.objectIsSelected =value;
-  // }
-
   void Awake()
   {
     if (instance != null && instance != this)
@@ -80,7 +72,7 @@ public class GameManagerScript : MonoBehaviour
     isLeft = isLeftToggle.isOn;
     //DontDestroyOnLoad(gameObject);
   }
-  // Start is called before the first frame update
+
   void Start()
   {
     MainCamera = GameObject.Find("Main Camera");
@@ -88,34 +80,30 @@ public class GameManagerScript : MonoBehaviour
     Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
   }
 
-  public void updateScore()
-  {
-    if (mushRoomData != null)
-    {
-      score += mushRoomData.pointsForTheMushroom;
-    }
-  }
-
-  // Update is called once per frame
   void Update()
   {
+    //Check for whether hand is present in the scene or not
     if (LeapHandLeft.activeSelf || LeapHandRight.activeSelf)
     {
-      Time.timeScale = 1;
       WarningScreen.SetActive(false);
     }
     else
     {
-      //Time.timeScale =0;
       WarningScreen.SetActive(true);
     }
+
+    //changes to left hand if toggle in the screen is turned on
     isLeft = isLeftToggle.isOn;
+
+    //update the info about the mushroom in the canvas
     if (mushRoomData != null)
       if (Name.text != mushRoomData.mName)
       {
         Name.text = "Name:" + mushRoomData.mName;
         Description.text = "Description:" + mushRoomData.mProperties;
       }
+
+    //level based code block
     switch (levelName)
     {
       case "1":
@@ -208,7 +196,7 @@ public class GameManagerScript : MonoBehaviour
         break;
     }
 
-
+    //constant check for lerping the camera to the close position or zoomed out position
     if (!(MushroomsInRange.Count > 0))
     {
       settingUpLerpValues(true, true, new Vector3(0, 1.0998f, -0.5680f), 75);
@@ -219,6 +207,8 @@ public class GameManagerScript : MonoBehaviour
     {
       settingUpLerpValues(true, false, new Vector3(0, 0.8889f, -0.7440f), 45);
     }
+
+    //to activate left side basket if left hand else right side basket
     if (isLeft)
     {
       LeftBasket.SetActive(true);
@@ -233,7 +223,7 @@ public class GameManagerScript : MonoBehaviour
     //Mushroom Spawning with all props and also Object pooling should be handled in the script
   }
 
-
+  //common function for lerping the camera position
   public void settingUpLerpValues(bool cameraMovementNeeded, bool mushroomGotOut, Vector3 endPos, int fieldOfView)
   {
     this.cameraMovementNeeded = cameraMovementNeeded;
@@ -261,6 +251,7 @@ public class GameManagerScript : MonoBehaviour
     Instructions.SetActive(false);
   }
 
+  //function to check whether the leaves are removed for all the mushrooms in the scene for level 4
   bool checkLeavesAllLeavesAreRemoved()
   {
     bool levelCleared = false;
@@ -277,6 +268,15 @@ public class GameManagerScript : MonoBehaviour
       }
     }
     return levelCleared;
+  }
+
+  //updates the overall score.
+  public void updateScore()
+  {
+    if (mushRoomData != null)
+    {
+      score += mushRoomData.pointsForTheMushroom;
+    }
   }
 
 }

@@ -34,11 +34,6 @@ public class MushroomPointAndPickup : MonoBehaviour
   public float speed = 0.1f;
   private float startTime;
   private float journeyLength;
-  //private bool journeyEnd=false;
-
-  //private bool raycastOff=false;
-
-
 
   private float startPosfinMovementCheckValue;
   bool finMovementDone;
@@ -82,15 +77,6 @@ public class MushroomPointAndPickup : MonoBehaviour
     _pinky = _hand.GetPinky();
     startPosfinMovementCheckValue = _hand.Direction.x;
     handPosition = _hand.WristPosition;
-    //have to change if the hand's location is decided to change
-    // if(_hand.IsLeft)
-    // {
-    //     offsetForPointing= new Vector3(-0.1f,0.18f,0f);
-    // }
-    // else{
-    //     offsetForPointing= new Vector3(0.11f,0.18f,0f);
-    // }
-    //laserLineRenderer=this.GetComponent<LineRenderer>();
     AimAnimator = GameManager.AimUIDisplay.transform.Find("Image").GetComponent<Animator>();
     GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position + new Vector3(0, -0.2f, 0);
     totalCountOfMushrooms = GameManager.AllMushrooms.Count;
@@ -360,7 +346,7 @@ public class MushroomPointAndPickup : MonoBehaviour
 
   void FixedUpdate()
   {
-    ////execute code for the rehab hand which needs exercise
+    ////code that needs to be executed for the rehab hand which needs exercise
     if (leftHand)
     {
       executeHandFuncitionalities();
@@ -406,6 +392,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     float disdirect = Mathf.Abs(startPosfinMovementCheckValue - _hand.Direction.x);
 
     //variable set for Fin movement for traversing target to left or right
+    //given in start so that we can reduce a certain Time lag
     if (_hand.Direction.x < -0.4f)
     {
       pointedLeft = true;
@@ -429,7 +416,6 @@ public class MushroomPointAndPickup : MonoBehaviour
       //Code to be executed when the object is in locked state
       if (GameManager.objectIsSelected && GameManager.selectedComponentMushroonInfoScript != null)
       {
-        //Debug.Log("Object Selected outside outside");
         //Arm twist/rotate
         if (comeToGrabRangeBool && _hand.PalmNormal.y > rotateParam)
         {
@@ -472,16 +458,6 @@ public class MushroomPointAndPickup : MonoBehaviour
                 if (disdirect > finParam) // checking if distance is less than required distance.
                 {
                   Debug.Log("Fin movement done" + pointedLeft + "Index:" + GameManager.currentIndex);
-                  //                  if(_hand.Direction.x<-0.5f)
-                  // {
-                  //     pointedLeft = true;
-                  //     Debug.Log("Fin Left movement done:"+_hand.Direction.x);
-                  // }
-                  // else if(_hand.Direction.x>0.5f){
-                  //     pointedLeft = false;
-                  //     Debug.Log("Fin Right movement done:"+_hand.Direction.x);
-                  // }
-                  //                 //Debug.Log("Fin movement distance:"+disdirect);
                   if (!pointedCenter)
                   {
                     if (pointedLeft)
@@ -511,7 +487,7 @@ public class MushroomPointAndPickup : MonoBehaviour
           }
           else
           {
-            //delay time variable updated for seamless transition from one target to another
+            //delay time variable updated for seamless transition from one target to another so that it doesn't happen for every frame
             lastMovedTarget += Time.deltaTime;
           }
         }
@@ -543,10 +519,10 @@ public class MushroomPointAndPickup : MonoBehaviour
       AimAnimator.SetBool("Locked", false);
       AimAnimator.SetBool("Rotate", true);
 
-      //
       GameManager.selectedComponentMushroonInfoScript = null;
       GameManager.AimUIDisplay.SetActive(false);
     }
+    //fin movement calculation variable
     startPosfinMovementCheckValue = _hand.Direction.x;
   }
 

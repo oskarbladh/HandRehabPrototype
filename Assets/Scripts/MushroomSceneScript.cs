@@ -4,7 +4,10 @@ using UnityEngine;
 using Leap.Unity.Interaction;
 
 ///<summary>
-///When mushroom comes near a interactable range then the camera zooms in
+///Has functionalities related to Mushrooms,
+///->When mushroom comes near a interactable range then the camera zooms in
+///->When mushroom gets inside the basket
+///->Also Level 1 specific collision enter code
 ///</summary>
 public class MushroomSceneScript : MonoBehaviour
 {

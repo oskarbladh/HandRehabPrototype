@@ -67,22 +67,6 @@ public class AudioManager : MonoBehaviour
   }
 
 
-  // private AudioClip GetAudioClip(Sounds sound){
-  //     if(CanPlaySound(sound)){
-  //     foreach(SoundAudioClip soundClip in soundAudioClips){
-  //         if(soundClip.sound == sound){
-  //             return soundClip.audioClip;
-  //         }
-  //         else{
-
-
-  //         }
-  //     }
-  //     }
-  //     //not reachable
-  //      return null;
-  // }
-
   public void PlaySound(string name)
   {
     //GameObject audioObject = new GameObject("Sound");

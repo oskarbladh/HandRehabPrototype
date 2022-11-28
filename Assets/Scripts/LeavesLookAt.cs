@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 ///<summary>
-///Makes the object look at the camera[changes the orientation of the object]
+///Makes the leaves object look at the camera[changes the orientation of the object]
 ///</summary>
 public class LeavesLookAt : MonoBehaviour
 {

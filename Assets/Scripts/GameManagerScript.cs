@@ -135,37 +135,33 @@ public class GameManagerScript : MonoBehaviour
         break;
       case "2":
         {
-          Time.timeScale = 1;
-          Score.gameObject.SetActive(false);
-          Name.text = "";
-          Description.text = "";
-          //check for 5 mushrooms in basket and Transition to next level
-          if (MushroomsInBasket.Count == 5)
-          {
-            //Transition to next level
-            // SceneManager.LoadScene("");
-            SceneManager.LoadScene("Level 3");
-          }
-        }
-        break;
-      case "3":
-        {
           Score.text = "Score: " + (score);
           if (score == 500)
           {
             Debug.Log("Level completed next level");
-            SceneManager.LoadScene("Level 4");
+            SceneManager.LoadScene("Level 3");
           }
           Name.text = "";
           Description.text = "";
           //Transition to next level
         }
         break;
-      case "4":
+      case "3":
         {
           Score.gameObject.SetActive(false);
           //check for 5 mushrooms in basket and Transition to next level
           if (MushroomsInBasket.Count == 8)
+          {
+            //Transition to next level
+            SceneManager.LoadScene("Level 4");
+          }
+        }
+        break;
+      case "4":
+        {
+          Score.gameObject.SetActive(false);
+          //check for 5 mushrooms present in the scene without leaves and Transition to next level
+          if (checkLeavesAllLeavesAreRemoved())
           {
             //Transition to next level
             SceneManager.LoadScene("Level 5");
@@ -175,8 +171,8 @@ public class GameManagerScript : MonoBehaviour
       case "5":
         {
           Score.gameObject.SetActive(false);
-          //check for 5 mushrooms present in the scene without leaves and Transition to next level
-          if (checkLeavesAllLeavesAreRemoved())
+          //check for 5 mushrooms in basket and Transition to next level
+          if (MushroomsInBasket.Count == 8)
           {
             //Transition to next level
             SceneManager.LoadScene("Level 6");
@@ -184,17 +180,6 @@ public class GameManagerScript : MonoBehaviour
         }
         break;
       case "6":
-        {
-          Score.gameObject.SetActive(false);
-          //check for 5 mushrooms in basket and Transition to next level
-          if (MushroomsInBasket.Count == 8)
-          {
-            //Transition to next level
-            SceneManager.LoadScene("Level 7");
-          }
-        }
-        break;
-      case "7":
         {
           Score.text = "Score: " + (score);
           if (MushroomsInBasket.Count > 5 && score == 500)

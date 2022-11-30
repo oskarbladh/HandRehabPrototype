@@ -59,6 +59,12 @@ public class GameManagerScript : MonoBehaviour
 
   public string levelName = "5";
 
+  public int nextLevel = 1;
+
+  public GameObject LoadingScreen;
+
+  public TextMeshProUGUI WinningScreenText;
+
   void Awake()
   {
     if (instance != null && instance != this)
@@ -109,6 +115,7 @@ public class GameManagerScript : MonoBehaviour
       case "1":
         {
           Score.gameObject.SetActive(false);
+          WinningScreenText.gameObject.SetActive(false);
           //check for 5 good mushrooms collided with the platform where the mushroom lands
           if (AllMushrooms.Count == 0)
           {
@@ -116,8 +123,7 @@ public class GameManagerScript : MonoBehaviour
 
             //Show winning screen
 
-            //Transition to next level
-            SceneManager.LoadScene("Level 2");
+            showWinningScreen();
           }
         }
         break;
@@ -125,6 +131,7 @@ public class GameManagerScript : MonoBehaviour
         {
           Time.timeScale = 1;
           Score.gameObject.SetActive(false);
+          WinningScreenText.gameObject.SetActive(false);
           Name.text = "";
           Description.text = "";
           //check for 5 mushrooms in basket and Transition to next level
@@ -132,17 +139,21 @@ public class GameManagerScript : MonoBehaviour
           {
             //Transition to next level
             // SceneManager.LoadScene("");
-            SceneManager.LoadScene("Level 3");
+            //SceneManager.LoadScene("Level 3");
+            showWinningScreen();
           }
         }
         break;
       case "3":
         {
           Score.text = "Score: " + (score);
+
           if (score == 500)
           {
             Debug.Log("Level completed next level");
-            SceneManager.LoadScene("Level 4");
+            //SceneManager.LoadScene("Level 4");
+            WinningScreenText.text = "Score: " + (score);
+            showWinningScreen();
           }
           Name.text = "";
           Description.text = "";
@@ -152,44 +163,53 @@ public class GameManagerScript : MonoBehaviour
       case "4":
         {
           Score.gameObject.SetActive(false);
+          WinningScreenText.gameObject.SetActive(false);
           //check for 5 mushrooms in basket and Transition to next level
           if (MushroomsInBasket.Count == 8)
           {
             //Transition to next level
-            SceneManager.LoadScene("Level 5");
+            //SceneManager.LoadScene("Level 5");
+            showWinningScreen();
           }
         }
         break;
       case "5":
         {
           Score.gameObject.SetActive(false);
+          WinningScreenText.gameObject.SetActive(false);
           //check for 5 mushrooms present in the scene without leaves and Transition to next level
           if (checkLeavesAllLeavesAreRemoved())
           {
             //Transition to next level
-            SceneManager.LoadScene("Level 6");
+            //SceneManager.LoadScene("Level 6");
+            showWinningScreen();
           }
         }
         break;
       case "6":
         {
           Score.gameObject.SetActive(false);
+          WinningScreenText.gameObject.SetActive(false);
           //check for 5 mushrooms in basket and Transition to next level
           if (MushroomsInBasket.Count == 8)
           {
             //Transition to next level
-            SceneManager.LoadScene("Level 7");
+            //SceneManager.LoadScene("Level 7");
+            showWinningScreen();
           }
         }
         break;
       case "7":
         {
           Score.text = "Score: " + (score);
+
           if (MushroomsInBasket.Count > 5 && score == 500)
           {
             //Transition to next level
             // SceneManager.LoadScene("");
-            WinningScreen.SetActive(true);
+            //WinningScreen.SetActive(true);
+            WinningScreenText.text = "Score: " + (score);
+            showWinningScreen();
             //Winning screen
           }
         }
@@ -278,5 +298,49 @@ public class GameManagerScript : MonoBehaviour
       score += mushRoomData.pointsForTheMushroom;
     }
   }
+
+  public void nextLevelWithLoadScreen(int sceneId)
+  {
+    if (sceneId != null)
+      LoadingScreen.GetComponent<LoadingFillScript>().showLoadScreen(sceneId);
+    else
+      LoadingScreen.GetComponent<LoadingFillScript>().showLoadScreen((nextLevel - 1));
+  }
+
+  void showWinningScreen()
+  {
+
+    //Transition to next level
+    //TurnOff the scripts in the hand and turn on the winningScreenScript so 
+    //that hand input only works on the winning screen
+    LeapHandLeft.GetComponent<MushroomPointAndPickup>().enabled = false;
+    LeapHandLeft.GetComponent<WinningScreenHandControllerScript>().enabled = true;
+    LeapHandRight.GetComponent<MushroomPointAndPickup>().enabled = false;
+    LeapHandRight.GetComponent<WinningScreenHandControllerScript>().enabled = true;
+    WinningScreen.SetActive(true);
+    //SceneManager.LoadScene("Level 2");
+  }
+
+  public void menuOnClick()
+  {
+    //Menuscreen transition
+  }
+
+  public void nextLevelOnClick()
+  {
+    nextLevelWithLoadScreen(nextLevel);
+  }
+
+  public void retryLevelOnClick()
+  {
+    nextLevelWithLoadScreen((nextLevel - 1));
+  }
+
+  public void quitOnClick()
+  {
+    //Exit game 
+  }
+
+
 
 }

@@ -300,18 +300,18 @@ public class MushroomPointAndPickup : MonoBehaviour
         break;
       case "3":
         {
-          targetMovementBool = false;
-          finMovementBool = false;
+          targetMovementBool = true;
+          finMovementBool = true;
           leavesMovementBool = false;
-          comeToGrabRangeBool = false;
+          comeToGrabRangeBool = true;
         }
         break;
       case "4":
         {
           targetMovementBool = true;
           finMovementBool = true;
-          leavesMovementBool = false;
-          comeToGrabRangeBool = true;
+          leavesMovementBool = true;
+          comeToGrabRangeBool = false;
         }
         break;
       case "5":
@@ -319,18 +319,10 @@ public class MushroomPointAndPickup : MonoBehaviour
           targetMovementBool = true;
           finMovementBool = true;
           leavesMovementBool = true;
-          comeToGrabRangeBool = false;
-        }
-        break;
-      case "6":
-        {
-          targetMovementBool = true;
-          finMovementBool = true;
-          leavesMovementBool = true;
           comeToGrabRangeBool = true;
         }
         break;
-      case "7":
+      case "6":
         {
           targetMovementBool = true;
           finMovementBool = true;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Data class for holding a Sound properties
+//Data class for holding a Sound properties and this allows to be used on the Editor
 [System.Serializable]
 public class Sounds
 {

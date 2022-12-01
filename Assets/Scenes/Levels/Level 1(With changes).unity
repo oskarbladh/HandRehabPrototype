@@ -217,7 +217,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42469125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10005b3ccd21cf34eaddf3a509b03273, type: 3}
   m_Name: 
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42469125}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1b4ebaed10c4c34d8e9691c0930c4c7, type: 3}
   m_Name: 
@@ -3899,12 +3899,16 @@ MonoBehaviour:
   ButtonsAndTheirPositions:
   - id: 0
     postion: {x: 456, y: 0}
+    button: {fileID: 1446236307}
   - id: 1
     postion: {x: 0, y: 0}
+    button: {fileID: 1149791571}
   - id: 2
     postion: {x: -458, y: 0}
+    button: {fileID: 517710681}
   - id: 3
     postion: {x: -881, y: 0}
+    button: {fileID: 374495298}
   AllButtons: {fileID: 537884137}
 --- !u!4 &690663649
 Transform:
@@ -5372,7 +5376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &986568497
 RectTransform:
   m_ObjectHideFlags: 0

@@ -65,6 +65,10 @@ public class GameManagerScript : MonoBehaviour
 
   public TextMeshProUGUI WinningScreenText;
 
+  public ButtonPosition[] ButtonsAndTheirPositions;
+
+  public GameObject AllButtons;
+
   void Awake()
   {
     if (instance != null && instance != this)
@@ -119,7 +123,7 @@ public class GameManagerScript : MonoBehaviour
           //check for 5 good mushrooms collided with the platform where the mushroom lands
           if (AllMushrooms.Count == 0)
           {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
 
             //Show winning screen
 
@@ -301,6 +305,7 @@ public class GameManagerScript : MonoBehaviour
 
   public void nextLevelWithLoadScreen(int sceneId)
   {
+    LoadingScreen.SetActive(true);
     if (sceneId != null)
       LoadingScreen.GetComponent<LoadingFillScript>().showLoadScreen(sceneId);
     else
@@ -328,12 +333,12 @@ public class GameManagerScript : MonoBehaviour
 
   public void nextLevelOnClick()
   {
-    nextLevelWithLoadScreen(nextLevel);
+    nextLevelWithLoadScreen(nextLevel - 1);
   }
 
   public void retryLevelOnClick()
   {
-    nextLevelWithLoadScreen((nextLevel - 1));
+    nextLevelWithLoadScreen((nextLevel - 2));
   }
 
   public void quitOnClick()

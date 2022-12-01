@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Leap;
 using Leap.Unity;
 public class WinningScreenHandControllerScript : MonoBehaviour
 {
   GameManagerScript GameManager;
-  int currentActiveButton = 0;
+  int currentActiveButton = 1;
   private Hand _hand;
   Finger _index;
   Finger _middle;
@@ -26,6 +28,11 @@ public class WinningScreenHandControllerScript : MonoBehaviour
   public float cooldown = 2f;
   private float lastMovedTarget = 3f;
   private float startPosfinMovementCheckValue;
+
+  Vector2 targetPos;
+
+  float timer = 0.0f;
+
   void Start()
   {
     GameManager = GameManagerScript.instance;
@@ -37,6 +44,13 @@ public class WinningScreenHandControllerScript : MonoBehaviour
     startPosfinMovementCheckValue = _hand.Direction.x;
     leftHand = _hand.IsLeft && isLeftHand && GameManager.isLeft;
     rightHand = !_hand.IsLeft && isRightHand && !GameManager.isLeft;
+    foreach (ButtonPosition button in GameManager.ButtonsAndTheirPositions)
+    {
+      if (button.id == currentActiveButton)
+        button.button.GetComponent<Button>().image.color = new Color(255f, 255f, 255f, 1f);
+      else
+        button.button.GetComponent<Button>().image.color = new Color(255f, 255f, 255f, 0.5f);
+    }
   }
 
 
@@ -45,6 +59,16 @@ public class WinningScreenHandControllerScript : MonoBehaviour
     //change the functionality for left or right hand as important one
     leftHand = _hand.IsLeft && isLeftHand && GameManager.isLeft;
     rightHand = !_hand.IsLeft && isRightHand && !GameManager.isLeft;
+    if (timer < 1.0f)
+    {
+      timer += Time.deltaTime * 2;
+      GameManager.AllButtons.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(GameManager.AllButtons.GetComponent<RectTransform>().anchoredPosition, targetPos, timer);
+    }
+    else
+    {
+      GameManager.ButtonsAndTheirPositions[currentActiveButton].button.GetComponent<Button>().image.color = new Color(255f, 255f, 255f, 1f); ;
+    }
+    //GameManager.AllButtons.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(GameManager.AllButtons.GetComponent<RectTransform>().anchoredPosition, targetPos, Time.deltaTime * 0.1f);
   }
 
   private void FixedUpdate()
@@ -97,6 +121,7 @@ public class WinningScreenHandControllerScript : MonoBehaviour
                 currentActiveButton = (currentActiveButton + 1) % 4;
               }
               lastMovedTarget = 0;
+              lerpTheButton();
             }
           }
         }
@@ -144,6 +169,24 @@ public class WinningScreenHandControllerScript : MonoBehaviour
         break;
 
     }
+  }
+
+  void lerpTheButton()
+  {
+    foreach (ButtonPosition button in GameManager.ButtonsAndTheirPositions)
+    {
+      button.button.GetComponent<Button>().image.color = new Color(255f, 255f, 255f, 0.5f);
+    }
+
+    targetPos = GameManager.ButtonsAndTheirPositions[currentActiveButton].postion;
+    if (targetPos == null)
+    {
+      Debug.LogWarning(currentActiveButton + "Button index not found");
+      return;
+    }
+    Debug.Log("Number:" + currentActiveButton + "  Position:" + targetPos + " TIme:" + Time.deltaTime);
+    //GameManager.AllButtons.transform.position = Vector3.Lerp(GameManager.AllButtons.transform.position, targetPos, 1f * Time.deltaTime);
+    timer = 0.0f;
   }
 
 }

@@ -131,24 +131,8 @@ public class GameManagerScript : MonoBehaviour
           }
         }
         break;
+
       case "2":
-        {
-          Time.timeScale = 1;
-          Score.gameObject.SetActive(false);
-          WinningScreenText.gameObject.SetActive(false);
-          Name.text = "";
-          Description.text = "";
-          //check for 5 mushrooms in basket and Transition to next level
-          if (MushroomsInBasket.Count == 5)
-          {
-            //Transition to next level
-            // SceneManager.LoadScene("");
-            //SceneManager.LoadScene("Level 3");
-            showWinningScreen();
-          }
-        }
-        break;
-      case "3":
         {
           Score.text = "Score: " + (score);
 
@@ -164,7 +148,7 @@ public class GameManagerScript : MonoBehaviour
           //Transition to next level
         }
         break;
-      case "4":
+      case "3":
         {
           Score.gameObject.SetActive(false);
           WinningScreenText.gameObject.SetActive(false);
@@ -177,7 +161,7 @@ public class GameManagerScript : MonoBehaviour
           }
         }
         break;
-      case "5":
+      case "4":
         {
           Score.gameObject.SetActive(false);
           WinningScreenText.gameObject.SetActive(false);
@@ -190,7 +174,7 @@ public class GameManagerScript : MonoBehaviour
           }
         }
         break;
-      case "6":
+      case "5":
         {
           Score.gameObject.SetActive(false);
           WinningScreenText.gameObject.SetActive(false);
@@ -203,7 +187,7 @@ public class GameManagerScript : MonoBehaviour
           }
         }
         break;
-      case "7":
+      case "6":
         {
           Score.text = "Score: " + (score);
 

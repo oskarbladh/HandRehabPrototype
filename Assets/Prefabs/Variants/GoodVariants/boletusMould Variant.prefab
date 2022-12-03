@@ -144,6 +144,7 @@ MonoBehaviour:
   isMoldy: 1
   isCoveredByLeaves: 0
   leafAssetName: 
+  pointsForTheMushroom: 50
   leavesAnimatorFromChild: {fileID: 0}
 --- !u!114 &5149825198640966447
 MonoBehaviour:

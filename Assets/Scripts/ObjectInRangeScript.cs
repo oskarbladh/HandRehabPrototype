@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 ///<summary>
-///RAYCAST ONLY NOT OBJECT///////////////////////////////////////////////////////////////
-///Boolean script to turn off RAYCAST from the finger if it comes near the range of hands
+///This script handles what needs to be done when the mushroom is got within grab range
+///[Camera zoomsin when object is added to the MushroomsInRange variable] 
+///and also resets the position when the mushroom falls down
 ///</summary>
 public class ObjectInRangeScript : MonoBehaviour
 {

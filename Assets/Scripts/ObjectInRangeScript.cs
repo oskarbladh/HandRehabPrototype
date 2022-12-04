@@ -32,9 +32,12 @@ public class ObjectInRangeScript : MonoBehaviour
       //Debug.Log("Triggered");
       //GameManager.objectIsSelected=true;
       //Add this gameObject to MushroomsInRange for handling the camera movement when multiple mushrooms come in range
-      if (!GameManager.MushroomsInRange.Contains(other.gameObject))
+      if (GameManager != null)
       {
-        GameManager.MushroomsInRange.Add(other.gameObject);
+        if (!GameManager.MushroomsInRange.Contains(other.gameObject))
+        {
+          GameManager.MushroomsInRange.Add(other.gameObject);
+        }
       }
     }
   }
@@ -44,7 +47,11 @@ public class ObjectInRangeScript : MonoBehaviour
     //Debug.Log("Velocity of the mushroom:" + other.gameObject.GetComponent<Rigidbody>().velocity.magnitude);
     if (other.CompareTag("Mushroom") && other.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 1.8)
     {
-      GameManager.objectIsSelected = false;
+      if (GameManager != null)
+      {
+        GameManager.objectIsSelected = false;
+        return;
+      }
       //remove the gameObject from MushroomsInRange
       other.gameObject.transform.position = musroomResetPoint.position;
     }

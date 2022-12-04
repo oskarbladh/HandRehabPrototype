@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -36,7 +37,7 @@ public class GameManagerScript : MonoBehaviour
   public Vector3 endCamPos;
   public float journeyLength;
 
-  public GameObject Instructions;
+  public GameObject Help;
 
   //picked mushroom data to display on the canvas
   public Text Name;
@@ -68,6 +69,24 @@ public class GameManagerScript : MonoBehaviour
   public ButtonPosition[] ButtonsAndTheirPositions;
 
   public GameObject AllButtons;
+
+  public GameObject TutorialsScreen;
+  public VideoPlayer tutorialsVideoPlayer;
+
+  public TextMeshProUGUI levelTutorialText;
+  public Animator movementAnimatorModule;
+  public Toggle completedToggle;
+  public VideoClip finMovementClip;
+  public VideoClip closeFistClip;
+  public VideoClip rotateFistClip;
+  public VideoClip pickAndGrabClip;
+  public VideoClip leavesMotionClip;
+
+  public Animator finMovementAnim;
+  public Animator closeFistAnim;
+  public Animator rotateFistAnim;
+  public Animator pickAndGrabAnim;
+  public Animator leavesMotionAnim;
 
   void Awake()
   {
@@ -249,14 +268,14 @@ public class GameManagerScript : MonoBehaviour
     SceneManager.LoadScene(scene.name);
   }
 
-  public void showInstructions()
+  public void showHelp()
   {
-    Instructions.SetActive(!Instructions.activeSelf);
+    Help.SetActive(!Help.activeSelf);
   }
 
-  public void closeInstructions()
+  public void closeHelp()
   {
-    Instructions.SetActive(false);
+    Help.SetActive(false);
   }
 
   //function to check whether the leaves are removed for all the mushrooms in the scene for level 4
@@ -308,6 +327,14 @@ public class GameManagerScript : MonoBehaviour
     LeapHandRight.GetComponent<WinningScreenHandControllerScript>().enabled = true;
     WinningScreen.SetActive(true);
     //SceneManager.LoadScene("Level 2");
+  }
+
+  public void changeToMainScript()
+  {
+    LeapHandLeft.GetComponent<MushroomPointAndPickup>().enabled = true;
+    LeapHandRight.GetComponent<MushroomPointAndPickup>().enabled = true;
+    LeapHandLeft.GetComponent<BeforeEnteringLevel>().enabled = false;
+    LeapHandRight.GetComponent<BeforeEnteringLevel>().enabled = false;
   }
 
   public void menuOnClick()

@@ -92,6 +92,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8772670184101816692}
+  - component: {fileID: -6922399022418444234}
+  - component: {fileID: 6538066363594624444}
+  - component: {fileID: 4412187933602918926}
+  - component: {fileID: -5838054183827697152}
+  - component: {fileID: -5686092629497791202}
   m_Layer: 0
   m_Name: boletMould
   m_TagString: Untagged
@@ -115,3 +120,99 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &-6922399022418444234
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283555269397246926}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6538066363594624444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283555269397246926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1853548, y: 0.2858182, z: 0.16496867}
+  m_Center: {x: 0.07279149, y: 0.12636505, z: 0.047636658}
+--- !u!114 &4412187933602918926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283555269397246926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f10fa40360571247a7ca806d6859557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manager: {fileID: 0}
+  _ignoreHoverMode: 0
+  _isIgnoringAllHoverState: 0
+  _ignorePrimaryHover: 0
+  _ignoreContact: 0
+  _ignoreGraspingMode: 0
+  _ignoreGrasping: 0
+  _contactForceMode: 0
+  _allowMultiGrasp: 0
+  _moveObjectWhenGrasped: 1
+  graspedMovementType: 0
+  _overrideInteractionLayer: 0
+  _interactionLayer:
+    layerIndex: 0
+  _overrideNoContactLayer: 0
+  _noContactLayer:
+    layerIndex: 0
+  _eventTable:
+    _entries: []
+--- !u!114 &-5838054183827697152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283555269397246926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f1964e482ed894e9b3f9fa85bc3e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mName: Karl Johan
+  mProperties: Edible, bit moldy
+  mSize: 1
+  poison: 0
+  isEaten: 0
+  isInfested: 0
+  isMiscolored: 0
+  isMoldy: 1
+  isCoveredByLeaves: 0
+  leafAssetName: 
+  pointsForTheMushroom: 50
+  leavesAnimatorFromChild: {fileID: 0}
+--- !u!114 &-5686092629497791202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283555269397246926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e57974f65ef9a54e8f8cdc9bde4ee30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

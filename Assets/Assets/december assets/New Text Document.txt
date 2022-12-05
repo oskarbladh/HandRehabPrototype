@@ -1,0 +1,2 @@
+make a mesh for the trees
+-the branch for lighting, can be just an untextured to help with the rendertimes

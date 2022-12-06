@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Leap;
 using Leap.Unity;
+using TMPro;
 
 ///<summary>
 ///Use Fin motion to change targets and lock by clenching your fist and rotate your hand 
@@ -203,7 +204,8 @@ public class BeforeEnteringLevel : MonoBehaviour
       if (!_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && !_index.IsExtended)
       {
         Debug.Log("Object Selected inside");
-        completionOfrotateFist();
+        if (!GameManager.completedToggle.isOn)
+          completionOfrotateFist();
       }
     }
     //Unlock target
@@ -231,7 +233,8 @@ public class BeforeEnteringLevel : MonoBehaviour
     //Locking of the mushroom
     if (closeFistBool && !closeFistCompletedBool && (!_index.IsExtended && !_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _hand.GrabStrength > grabParam && _hand.PalmNormal.y < rotateParam))
     {
-      completionOfcloseFist();
+      if (!GameManager.completedToggle.isOn)
+        completionOfcloseFist();
     }
 
     //should add pick and drop motion condition
@@ -242,53 +245,66 @@ public class BeforeEnteringLevel : MonoBehaviour
 
   void selectingTargetActivationFlow()
   {
+    GameManager.TaskText.text = "Move between targets\nMotion - Fin Motion";
     GameManager.TutorialsScreen.SetActive(true);
     finMovementBool = true;
-    GameManager.tutorialsVideoPlayer.clip = GameManager.finMovementClip;
+    //GameManager.tutorialsVideoPlayer.clip = GameManager.finMovementClip;
     GameManager.movementAnimatorModule = GameManager.finMovementAnim;
+    GameManager.finMovementClip.SetActive(true);
   }
 
   void completionOfFinMovement()
   {
     GameManager.completedToggle.isOn = true;
     StartCoroutine(ChangeBool("fin"));
+    GameManager.finMovementClip.SetActive(false);
   }
 
   void closeFistActivationFlow()
   {
+    GameManager.TaskText.text = "Selecting target\nMotion - Close Fist";
     GameManager.TutorialsScreen.SetActive(true);
     closeFistBool = true;
-    GameManager.tutorialsVideoPlayer.clip = GameManager.closeFistClip;
-    GameManager.movementAnimatorModule = GameManager.closeFistAnim;
+    //GameManager.tutorialsVideoPlayer.clip = GameManager.closeFistClip;
 
+    GameManager.movementAnimatorModule = GameManager.closeFistAnim;
+    //GameManager.tutorialsVideoPlayer.Play();
+    GameManager.closeFistClip.SetActive(true);
   }
 
   void completionOfcloseFist()
   {
-    GameManager.completedToggle.isOn = true;
+    if (!GameManager.completedToggle.isOn)
+      GameManager.completedToggle.isOn = true;
     StartCoroutine(ChangeBool("close"));
+    GameManager.closeFistClip.SetActive(false);
   }
 
   void rotateFistActivationFlow()
   {
+    GameManager.TaskText.text = "Bring the mushroom\nMotion - Close and Rotate your arm";
     GameManager.TutorialsScreen.SetActive(true);
     rotateFistBool = true;
-    GameManager.tutorialsVideoPlayer.clip = GameManager.rotateFistClip;
-    GameManager.movementAnimatorModule = GameManager.rotateFistAnim;
+    // GameManager.tutorialsVideoPlayer.clip = GameManager.rotateFistClip;
 
+    GameManager.movementAnimatorModule = GameManager.rotateFistAnim;
+    //GameManager.tutorialsVideoPlayer.Play();
+    GameManager.rotateFistClip.SetActive(true);
   }
 
   void completionOfrotateFist()
   {
+
     GameManager.completedToggle.isOn = true;
     StartCoroutine(ChangeBool("rotate"));
+    GameManager.rotateFistClip.SetActive(false);
   }
 
   void pickAndDropActivationFlow()
   {
     GameManager.TutorialsScreen.SetActive(true);
     pickingDropBool = true;
-    GameManager.tutorialsVideoPlayer.clip = GameManager.pickAndGrabClip;
+    //GameManager.tutorialsVideoPlayer.clip = GameManager.pickAndGrabClip;
     GameManager.movementAnimatorModule = GameManager.pickAndGrabAnim;
 
   }
@@ -301,17 +317,20 @@ public class BeforeEnteringLevel : MonoBehaviour
 
   void leavesHandMotionsActivationFlow()
   {
+    GameManager.TaskText.text = "Removing leaves\nMotion - Lock and use Fin on other hand";
     GameManager.TutorialsScreen.SetActive(true);
     leavesMovementBool = true;
-    GameManager.tutorialsVideoPlayer.clip = GameManager.leavesMotionClip;
+    //GameManager.tutorialsVideoPlayer.clip = GameManager.leavesMotionClip;
     GameManager.movementAnimatorModule = GameManager.leavesMotionAnim;
-
+    //GameManager.tutorialsVideoPlayer.Play();
+    GameManager.leavesMotionClip.SetActive(true);
   }
 
   void completionOfleavesHandMotions()
   {
     GameManager.completedToggle.isOn = true;
     StartCoroutine(ChangeBool("leaves"));
+    GameManager.leavesMotionClip.SetActive(false);
   }
 
   IEnumerator ChangeBool(string name)

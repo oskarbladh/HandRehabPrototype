@@ -50,7 +50,7 @@ public class ObjectInRangeScript : MonoBehaviour
       if (GameManager != null)
       {
         GameManager.objectIsSelected = false;
-        return;
+        //return;
       }
       //remove the gameObject from MushroomsInRange
       other.gameObject.transform.position = musroomResetPoint.position;

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -7720557310352512524}
   m_Layer: 0
   m_Name: boletMisColoured
-  m_TagString: Untagged
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8283555269397246926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.297636, y: 0.097132, z: -3.1836963}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,8 +147,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1853548, y: 0.2858182, z: 0.16496867}
-  m_Center: {x: 0.07279149, y: 0.12636505, z: 0.047636658}
+  m_Size: {x: 0.14617604, y: 0.1844143, z: 0.16496867}
+  m_Center: {x: 0.068182215, y: 0.075663105, z: 0.047636658}
 --- !u!114 &-3163519436245932114
 MonoBehaviour:
   m_ObjectHideFlags: 0

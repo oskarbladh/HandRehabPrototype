@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -7735314936183564656}
   m_Layer: 0
   m_Name: ChantBitten
-  m_TagString: Untagged
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3081181619635827510}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.9830146, y: 0.1608387, z: 9.21014}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,8 +147,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.34045222, y: 0.40276647, z: 0.3043424}
-  m_Center: {x: 0.524698, y: 0.1036552, z: 0.4237416}
+  m_Size: {x: 0.3404522, y: 0.45748726, z: 0.3043424}
+  m_Center: {x: 0.524698, y: 0.13101564, z: 0.42374164}
 --- !u!114 &9110257378011077918
 MonoBehaviour:
   m_ObjectHideFlags: 0

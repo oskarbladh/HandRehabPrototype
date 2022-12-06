@@ -78,7 +78,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     startPosfinMovementCheckValue = _hand.Direction.x;
     handPosition = _hand.WristPosition;
     AimAnimator = GameManager.AimUIDisplay.transform.Find("Image").GetComponent<Animator>();
-    GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position + new Vector3(0, -0.2f, 0);
+    GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position + new Vector3(0, -0.1f, 0);
     totalCountOfMushrooms = GameManager.AllMushrooms.Count;
     GameManager.AimUIDisplay.SetActive(true);
     leftHand = _hand.IsLeft && isLeftHand && GameManager.isLeft;
@@ -98,7 +98,7 @@ public class MushroomPointAndPickup : MonoBehaviour
     //change the functionality for left or right hand as important one
     leftHand = _hand.IsLeft && isLeftHand && GameManager.isLeft;
     rightHand = !_hand.IsLeft && isRightHand && !GameManager.isLeft;
-
+    totalCountOfMushrooms = GameManager.AllMushrooms.Count;
     ////Game code and functionalities based on the levels
     switch (GameManager.levelName)
     {
@@ -261,7 +261,7 @@ public class MushroomPointAndPickup : MonoBehaviour
         if (finMovementBool)
         {
           GameManager.AimUIDisplay.SetActive(true);
-          GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex % GameManager.AllMushrooms.Count].transform.position + new Vector3(0, -0.2f, 0);
+          GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex % GameManager.AllMushrooms.Count].transform.position + new Vector3(0, -0.1f, 0);
           if (lastMovedTarget > cooldown)
           {
             if (_hand.PalmNormal.y > -0.5 && _hand.PalmNormal.y < 0.5f && !AimAnimator.GetBool("Locked"))
@@ -290,7 +290,7 @@ public class MushroomPointAndPickup : MonoBehaviour
                     }
 
                     //GameManager.currentIndex = (GameManager.currentIndex + 1) % totalCountOfMushrooms;
-                    GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position + new Vector3(0, -0.2f, 0);
+                    GameManager.AimUIDisplay.transform.position = GameManager.AllMushrooms[GameManager.currentIndex].transform.position + new Vector3(0, -0.1f, 0);
                     GameManager.AimUIDisplay.SetActive(true);
                     lastMovedTarget = 0;
                   }

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7444969455644687931}
   m_Layer: 0
   m_Name: BoletBitten
-  m_TagString: Untagged
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7884811033273910672}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.5547714, y: 0.13287231, z: 8.982576}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,8 +147,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.44287416, y: 0.79541814, z: 0.43371195}
-  m_Center: {x: 0.24884742, y: 0.31291175, z: 0.3560192}
+  m_Size: {x: 0.45495838, y: 0.6392129, z: 0.4337119}
+  m_Center: {x: 0.2397843, y: 0.23480913, z: 0.3560192}
 --- !u!114 &-501959109249072915
 MonoBehaviour:
   m_ObjectHideFlags: 0

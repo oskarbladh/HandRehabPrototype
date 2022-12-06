@@ -10,17 +10,18 @@ public class LookAtCamera : MonoBehaviour
   // [SerializeField]
   // GameObject Camera;
 
-  public float rotationSpeed = 10f;
+  public Transform Camera;
 
   void Start()
   {
-    transform.LookAt(Camera.main.transform);
+    transform.LookAt(Camera);
   }
 
 
   void Update()
   {
 
-    transform.Rotate(0, 0, 20.0f * rotationSpeed * Time.deltaTime);
+    //transform.Rotate(0, 0, 20.0f * rotationSpeed * Time.deltaTime);
+    transform.LookAt(Camera);
   }
 }

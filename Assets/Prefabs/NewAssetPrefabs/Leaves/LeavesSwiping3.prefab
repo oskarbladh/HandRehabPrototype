@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5898255525008998586}
   - component: {fileID: 1819299980259296121}
   - component: {fileID: 510928208687290036}
-  - component: {fileID: 3870988775872456206}
-  m_Layer: 0
+  - component: {fileID: 6932829652314068563}
+  m_Layer: 6
   m_Name: LeavesSwiping3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,17 +84,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3870988775872456206
-MeshCollider:
+--- !u!95 &6932829652314068563
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7973708753704526117}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3acab8a6114cf154f9e8c41d5628239b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

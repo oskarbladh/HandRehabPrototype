@@ -127,6 +127,10 @@ public class MushroomSceneScript : MonoBehaviour
       transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
       GameManager.MushroomsInRange.Remove(this.gameObject);
       GameManager.AllMushrooms.Remove(this.gameObject);
+      if (GameManager.GoodMushrooms != null && GameManager.GoodMushrooms.Count > 0 && GameManager.GoodMushrooms.Contains(this.gameObject))
+      {
+        GameManager.GoodMushrooms.Remove(this.gameObject);
+      }
       GameManager.MushroomsInBasket.Add(this.gameObject);
       GameManager.explorationMode = true;
       GameManager.objectIsSelected = false;

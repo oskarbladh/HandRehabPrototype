@@ -27,11 +27,13 @@ public class WinningScreenHandControllerScript : MonoBehaviour
   bool pointedCenter = true;
   public float cooldown = 2f;
   private float lastMovedTarget = 3f;
+  bool execute=true;
   private float startPosfinMovementCheckValue;
 
   Vector2 targetPos;
 
   float timer = 0.0f;
+
 
   void Start()
   {
@@ -51,11 +53,23 @@ public class WinningScreenHandControllerScript : MonoBehaviour
       else
         button.button.GetComponent<Button>().image.color = new Color(255f, 255f, 255f, 0.5f);
     }
+    if(!_index.IsExtended && !_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _hand.GrabStrength > grabParam)
+    {
+      execute=false;
+    }
+    else
+    {
+      execute=true;
+    }
   }
 
 
   void Update()
   {
+    if(_index.IsExtended && _middle.IsExtended && _ring.IsExtended && _pinky.IsExtended)
+    {
+      execute=true;
+    }
     //change the functionality for left or right hand as important one
     leftHand = _hand.IsLeft && isLeftHand && GameManager.isLeft;
     rightHand = !_hand.IsLeft && isRightHand && !GameManager.isLeft;
@@ -108,17 +122,17 @@ public class WinningScreenHandControllerScript : MonoBehaviour
                 Debug.Log("Fin movement done towards left");
                 if (currentActiveButton == 0)
                 {
-                  currentActiveButton = 3;
+                  currentActiveButton = GameManager.ButtonsAndTheirPositions.Length - 1;
                 }
                 else
                 {
-                  currentActiveButton = (currentActiveButton - 1) % 4;
+                  currentActiveButton = (currentActiveButton - 1) % GameManager.ButtonsAndTheirPositions.Length;
                 }
               }
               else
               {
                 Debug.Log("Fin movement done towards right");
-                currentActiveButton = (currentActiveButton + 1) % 4;
+                currentActiveButton = (currentActiveButton + 1) % GameManager.ButtonsAndTheirPositions.Length;
               }
               lastMovedTarget = 0;
               lerpTheButton();
@@ -137,6 +151,7 @@ public class WinningScreenHandControllerScript : MonoBehaviour
     if (!_index.IsExtended && !_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _hand.GrabStrength > grabParam)
     {
       Debug.Log("Selection");
+      if(execute)
       executeButtonsFunctionality();
     }
     //fin movement calculation variable
@@ -145,29 +160,54 @@ public class WinningScreenHandControllerScript : MonoBehaviour
 
   void executeButtonsFunctionality()
   {
-    switch (currentActiveButton)
+    if (GameManager.levelName == "6")
     {
-      case 0:
-        {
-          GameManager.menuOnClick();
-        }
-        break;
-      case 1:
-        {
-          GameManager.nextLevelOnClick();
-        }
-        break;
-      case 2:
-        {
-          GameManager.retryLevelOnClick();
-        }
-        break;
-      case 3:
-        {
-          GameManager.quitOnClick();
-        }
-        break;
+      switch (currentActiveButton)
+      {
+        case 0:
+          {
+            GameManager.menuOnClick();
+          }
+          break;
+        case 1:
+          {
+            GameManager.retryLevelOnClick();
+          }
+          break;
+        case 2:
+          {
+            GameManager.quitOnClick();
+          }
+          break;
 
+      }
+    }
+    else
+    {
+      switch (currentActiveButton)
+      {
+        case 0:
+          {
+            GameManager.menuOnClick();
+          }
+          break;
+        case 1:
+          {
+            GameManager.nextLevelOnClick();
+          }
+          break;
+        case 2:
+          {
+            GameManager.retryLevelOnClick();
+          }
+          break;
+        case 3:
+          {
+            GameManager.quitOnClick();
+          }
+          break;
+
+      }
     }
   }
 

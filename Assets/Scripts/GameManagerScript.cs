@@ -18,6 +18,7 @@ public class GameManagerScript : MonoBehaviour
   public GameObject AimUIDisplay;
   public GameObject MushroomCanvas;
   public List<GameObject> AllMushrooms;
+  public List<GameObject> GoodMushrooms;
   public List<GameObject> MushroomsInRange;
 
   public List<GameObject> MushroomsInBasket;
@@ -42,7 +43,7 @@ public class GameManagerScript : MonoBehaviour
   //picked mushroom data to display on the canvas
   public Text Name;
   public Text Description;
-  TextMeshProUGUI Score;
+  public GameObject Score;
 
   private int score = 0;
 
@@ -56,6 +57,10 @@ public class GameManagerScript : MonoBehaviour
   public GameObject LeftBasket;
 
   public GameObject WinningScreen;
+
+  public GameObject RetryScreen;
+
+  public TextMeshProUGUI TaskText;
   public int currentIndex = 0;
 
   public string levelName = "5";
@@ -71,16 +76,15 @@ public class GameManagerScript : MonoBehaviour
   public GameObject AllButtons;
 
   public GameObject TutorialsScreen;
-  public VideoPlayer tutorialsVideoPlayer;
+  //public VideoPlayer tutorialsVideoPlayer;
 
-  public TextMeshProUGUI levelTutorialText;
   public Animator movementAnimatorModule;
   public Toggle completedToggle;
-  public VideoClip finMovementClip;
-  public VideoClip closeFistClip;
-  public VideoClip rotateFistClip;
-  public VideoClip pickAndGrabClip;
-  public VideoClip leavesMotionClip;
+  public GameObject finMovementClip;
+  public GameObject closeFistClip;
+  public GameObject rotateFistClip;
+  public GameObject pickAndGrabClip;
+  public GameObject leavesMotionClip;
 
   public Animator finMovementAnim;
   public Animator closeFistAnim;
@@ -106,7 +110,7 @@ public class GameManagerScript : MonoBehaviour
   {
     MainCamera = GameObject.Find("Main Camera");
     //Name = MushroomCanvas.transform.Find("Text (Legacy)").gameObject.GetComponent<Text>();
-    Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
+    //Score = PlayerCanvas.transform.Find("Score").gameObject.GetComponent<TextMeshProUGUI>();
   }
 
   void Update()
@@ -153,13 +157,13 @@ public class GameManagerScript : MonoBehaviour
 
       case "2":
         {
-          Score.text = "Score: " + (score);
+          Score.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "Score: " + (score);
 
           if (score == 500)
           {
             Debug.Log("Level completed next level");
             //SceneManager.LoadScene("Level 4");
-            WinningScreenText.text = "Score: " + (score);
+            WinningScreenText.text = "" + score;
             showWinningScreen();
           }
           Name.text = "";
@@ -169,14 +173,19 @@ public class GameManagerScript : MonoBehaviour
         break;
       case "3":
         {
-          Score.gameObject.SetActive(false);
-          WinningScreenText.gameObject.SetActive(false);
+          Score.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "Score: " + (score);
+          //WinningScreenText.gameObject.SetActive(false);
           //check for 5 mushrooms in basket and Transition to next level
-          if (MushroomsInBasket.Count == 8)
+          if (MushroomsInBasket.Count > 4 && score > 400)
           {
             //Transition to next level
             //SceneManager.LoadScene("Level 5");
+            WinningScreenText.text = "" + score;
             showWinningScreen();
+          } else if (GoodMushrooms.Count <3 && score <200)
+          {
+            RetryScreen.SetActive(true);
+            //ResetLevel();
           }
         }
         break;
@@ -208,16 +217,20 @@ public class GameManagerScript : MonoBehaviour
         break;
       case "6":
         {
-          Score.text = "Score: " + (score);
+          Score.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "Score: " + (score);
 
           if (MushroomsInBasket.Count > 5 && score == 500)
           {
             //Transition to next level
             // SceneManager.LoadScene("");
             //WinningScreen.SetActive(true);
-            WinningScreenText.text = "Score: " + (score);
+            WinningScreenText.text = "" + score;
             showWinningScreen();
             //Winning screen
+          }
+          else if (GoodMushrooms.Count == 0)
+          {
+            RetryScreen.SetActive(true);
           }
         }
         break;
@@ -232,7 +245,7 @@ public class GameManagerScript : MonoBehaviour
     }
     else
     {
-      settingUpLerpValues(true, false, new Vector3(0, 0.8889f, -0.7440f), 45);
+      settingUpLerpValues(true, false, new Vector3(0, 0.8889f, -0.7440f), 48);
     }
 
     //to activate left side basket if left hand else right side basket

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -5165786942101579773}
   m_Layer: 0
   m_Name: pantherine
-  m_TagString: Untagged
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7965497987538767755}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.245061, y: 0.099967, z: -3.3129687}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,8 +147,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.12178719, y: 0.21632564, z: 0.11628091}
-  m_Center: {x: 0.049856603, y: 0.08453792, z: 0.09502314}
+  m_Size: {x: 0.12178719, y: 0.15830013, z: 0.11628091}
+  m_Center: {x: 0.049856603, y: 0.05552517, z: 0.09502314}
 --- !u!114 &7326728376687515515
 MonoBehaviour:
   m_ObjectHideFlags: 0

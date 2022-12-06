@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -6200627060192366830}
   m_Layer: 0
   m_Name: chant
-  m_TagString: Untagged
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7496248808302185207}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.470222, y: 0.106306, z: -3.5067036}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,8 +147,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.11330032, y: 0.17580625, z: 0.107146025}
-  m_Center: {x: 0.07340324, y: 0.045643553, z: 0.11742604}
+  m_Size: {x: 0.10911386, y: 0.14859423, z: 0.107146025}
+  m_Center: {x: 0.071310006, y: 0.03203754, z: 0.11742604}
 --- !u!114 &-4332948065448322054
 MonoBehaviour:
   m_ObjectHideFlags: 0

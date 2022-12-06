@@ -20,6 +20,7 @@ public class OutOfBoundsScript : MonoBehaviour
     {
       GameManager.currentIndex = GameManager.currentIndex + 1 % GameManager.AllMushrooms.Count;
       GameManager.AllMushrooms.Remove(other.gameObject);
+      GameManager.GoodMushrooms.Remove(other.gameObject);
       Destroy(other.gameObject);
     }
   }

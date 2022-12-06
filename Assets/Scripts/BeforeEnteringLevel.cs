@@ -113,22 +113,22 @@ public class BeforeEnteringLevel : MonoBehaviour
           }
         }
         break;
-      case "2":
-        {
-          if (!tutorialStarted)
-          {
-            pickAndDropActivationFlow();
+      // case "2":
+      //   {
+      //     if (!tutorialStarted)
+      //     {
+      //       pickAndDropActivationFlow();
 
-          }
-          if (pickingDropCompletedBool)
-          {
-            GameManager.TutorialsScreen.SetActive(false);
-            GameManager.changeToMainScript();
-            //turnOffTheTutScreen
-            //change over the scripts after completion
-          }
-        }
-        break;
+      //     }
+      //     if (pickingDropCompletedBool)
+      //     {
+      //       GameManager.TutorialsScreen.SetActive(false);
+      //       GameManager.changeToMainScript();
+      //       //turnOffTheTutScreen
+      //       //change over the scripts after completion
+      //     }
+      //   }
+      //   break;
       case "4":
         {
           if (!tutorialStarted)

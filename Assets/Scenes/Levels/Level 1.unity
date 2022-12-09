@@ -1069,6 +1069,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 522290337}
     m_Modifications:
+    - target: {fileID: 3869697527539011031, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697527539011031, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697527539011031, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697527539011031, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -250
+      objectReference: {fileID: 0}
     - target: {fileID: 3869697527558124247, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1156,6 +1172,74 @@ PrefabInstance:
     - target: {fileID: 3869697527558124248, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
       propertyPath: m_Name
       value: HelpWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697527558124248, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697527647734567, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697527647734567, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697527647734567, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697527647734567, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -550
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697528636699621, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697528636699621, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.84921545
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697528636699621, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.15078467
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697528928231599, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697528928231599, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697528928231599, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697528928231599, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697529039358398, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697529039358398, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697529039358398, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697529039358398, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869697529122797610, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 196.01999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 824889184bf456e4798d7e7c72d2752f, type: 3}
@@ -2439,11 +2523,6 @@ MonoBehaviour:
   rotateFistClip: {fileID: 1337955502}
   pickAndGrabClip: {fileID: 0}
   leavesMotionClip: {fileID: 0}
-  finMovementAnim: {fileID: 0}
-  closeFistAnim: {fileID: 0}
-  rotateFistAnim: {fileID: 0}
-  pickAndGrabAnim: {fileID: 0}
-  leavesMotionAnim: {fileID: 0}
 --- !u!4 &690663649
 Transform:
   m_ObjectHideFlags: 0
@@ -3422,6 +3501,129 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e0fbeda1179e774da6992760eebb4f1, type: 3}
+--- !u!90 &866394061
+Avatar:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Automatic Avatar
+  m_AvatarSize: 500
+  m_Avatar:
+    serializedVersion: 3
+    m_AvatarSkeleton:
+      data:
+        m_Node:
+        - m_ParentId: -1
+          m_AxesId: -1
+        m_ID: 00000000
+        m_AxesArray: []
+    m_AvatarSkeletonPose:
+      data:
+        m_X:
+        - t: {x: -757, y: -220, z: 0}
+          q: {x: 0, y: 0, z: 0, w: 1}
+          s: {x: 1, y: 1, z: 1}
+    m_DefaultPose:
+      data:
+        m_X:
+        - t: {x: -757, y: -220, z: 0}
+          q: {x: 0, y: 0, z: 0, w: 1}
+          s: {x: 1, y: 1, z: 1}
+    m_SkeletonNameIDArray: 00000000
+    m_Human:
+      data:
+        serializedVersion: 2
+        m_RootX:
+          t: {x: 0, y: 0, z: 0}
+          q: {x: 0, y: 0, z: 0, w: 1}
+          s: {x: 1, y: 1, z: 1}
+        m_Skeleton:
+          data:
+            m_Node: []
+            m_ID: 
+            m_AxesArray: []
+        m_SkeletonPose:
+          data:
+            m_X: []
+        m_LeftHand:
+          data:
+            m_HandBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        m_RightHand:
+          data:
+            m_HandBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        m_HumanBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        m_HumanBoneMass:
+        - 0.14545456
+        - 0.12121213
+        - 0.12121213
+        - 0.048484854
+        - 0.048484854
+        - 0.009696971
+        - 0.009696971
+        - 0.030303033
+        - 0.14545456
+        - 0.14545456
+        - 0.012121214
+        - 0.048484854
+        - 0.006060607
+        - 0.006060607
+        - 0.024242427
+        - 0.024242427
+        - 0.01818182
+        - 0.01818182
+        - 0.006060607
+        - 0.006060607
+        - 0.0024242427
+        - 0.0024242427
+        - 0
+        - 0
+        - 0
+        m_Scale: 1
+        m_ArmTwist: 0.5
+        m_ForeArmTwist: 0.5
+        m_UpperLegTwist: 0.5
+        m_LegTwist: 0.5
+        m_ArmStretch: 0.05
+        m_LegStretch: 0.05
+        m_FeetSpacing: 0
+        m_HasLeftHand: 0
+        m_HasRightHand: 0
+        m_HasTDoF: 0
+    m_HumanSkeletonIndexArray: 
+    m_HumanSkeletonReverseIndexArray: 
+    m_RootMotionBoneIndex: -1
+    m_RootMotionBoneX:
+      t: {x: 0, y: 0, z: 0}
+      q: {x: 0, y: 0, z: 0, w: 1}
+      s: {x: 1, y: 1, z: 1}
+    m_RootMotionSkeleton:
+      data:
+        m_Node: []
+        m_ID: 
+        m_AxesArray: []
+    m_RootMotionSkeletonPose:
+      data:
+        m_X: []
+    m_RootMotionSkeletonIndexArray: 
+  m_TOS:
+    0: 
+  m_HumanDescription:
+    serializedVersion: 3
+    m_Human: []
+    m_Skeleton: []
+    m_ArmTwist: 0.5
+    m_ForeArmTwist: 0.5
+    m_UpperLegTwist: 0.5
+    m_LegTwist: 0.5
+    m_ArmStretch: 0.05
+    m_LegStretch: 0.05
+    m_FeetSpacing: 0
+    m_GlobalScale: 1
+    m_RootMotionBoneName: 
+    m_HasTranslationDoF: 0
+    m_HasExtraRoot: 0
+    m_SkeletonHasParents: 1
 --- !u!1 &877012164
 GameObject:
   m_ObjectHideFlags: 0
@@ -8444,6 +8646,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 522290337}
     m_Modifications:
+    - target: {fileID: 6012529941116661372, guid: f57add47a5179df40919563e4725747e, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 866394061}
+    - target: {fileID: 6012529941116661372, guid: f57add47a5179df40919563e4725747e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012529941116661372, guid: f57add47a5179df40919563e4725747e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 875b713462aeff64d8f8268bd39354d6, type: 2}
     - target: {fileID: 6012529941215013554, guid: f57add47a5179df40919563e4725747e, type: 3}
       propertyPath: m_Name
       value: LearningControls
@@ -8549,6 +8763,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinningScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6118939806269537610, guid: 23acbf21366103b4b90d051cc84dd3c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6118939806269537611, guid: 23acbf21366103b4b90d051cc84dd3c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8641,6 +8859,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 690663648}
+    - target: {fileID: 6118939807102910505, guid: 23acbf21366103b4b90d051cc84dd3c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6118939807783896879, guid: 23acbf21366103b4b90d051cc84dd3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

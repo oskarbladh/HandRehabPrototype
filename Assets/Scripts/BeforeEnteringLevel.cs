@@ -62,6 +62,7 @@ public class BeforeEnteringLevel : MonoBehaviour
   bool pickingDropCompletedBool = false;
 
   bool tutorialStarted = false;
+  bool tutorialStarted2 = false;
 
   void Start()
   {
@@ -224,6 +225,7 @@ public class BeforeEnteringLevel : MonoBehaviour
           if (disdirect > finParam) // checking if distance is less than required distance.
           {
             Debug.Log("Fin movement done");
+            GameManager.movementAnimatorModule.SetBool("Fin", false);
             completionOfFinMovement();
           }
         }
@@ -233,8 +235,9 @@ public class BeforeEnteringLevel : MonoBehaviour
     //Locking of the mushroom
     if (closeFistBool && !closeFistCompletedBool && (!_index.IsExtended && !_middle.IsExtended && !_ring.IsExtended && !_pinky.IsExtended && _hand.GrabStrength > grabParam && _hand.PalmNormal.y < rotateParam))
     {
-      if (!GameManager.completedToggle.isOn)
+      if (!tutorialStarted2)
         completionOfcloseFist();
+      GameManager.movementAnimatorModule.SetBool("CloseFist", false);
     }
 
     //should add pick and drop motion condition
@@ -248,16 +251,19 @@ public class BeforeEnteringLevel : MonoBehaviour
     GameManager.TaskText.text = "Move between targets\nMotion - Fin Motion";
     GameManager.TutorialsScreen.SetActive(true);
     finMovementBool = true;
+    tutorialStarted = true;
     //GameManager.tutorialsVideoPlayer.clip = GameManager.finMovementClip;
-    GameManager.movementAnimatorModule = GameManager.finMovementAnim;
+    GameManager.movementAnimatorModule.SetBool("Fin", true);
     GameManager.finMovementClip.SetActive(true);
   }
 
   void completionOfFinMovement()
   {
+    GameManager.movementAnimatorModule.SetBool("Fin", false);
     GameManager.completedToggle.isOn = true;
     StartCoroutine(ChangeBool("fin"));
     GameManager.finMovementClip.SetActive(false);
+
   }
 
   void closeFistActivationFlow()
@@ -266,8 +272,9 @@ public class BeforeEnteringLevel : MonoBehaviour
     GameManager.TutorialsScreen.SetActive(true);
     closeFistBool = true;
     //GameManager.tutorialsVideoPlayer.clip = GameManager.closeFistClip;
-
-    GameManager.movementAnimatorModule = GameManager.closeFistAnim;
+    GameManager.movementAnimatorModule.SetBool("CloseFist", true);
+    //GameManager.movementAnimatorModule.SetTrigger("Close");
+    //GameManager.movementAnimatorModule.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(GameManager.closeFistAnim);
     //GameManager.tutorialsVideoPlayer.Play();
     GameManager.closeFistClip.SetActive(true);
   }
@@ -278,6 +285,9 @@ public class BeforeEnteringLevel : MonoBehaviour
       GameManager.completedToggle.isOn = true;
     StartCoroutine(ChangeBool("close"));
     GameManager.closeFistClip.SetActive(false);
+    tutorialStarted2 = true;
+    GameManager.movementAnimatorModule.SetBool("CloseFist", false);
+    GameManager.movementAnimatorModule.SetTrigger("Close");
   }
 
   void rotateFistActivationFlow()
@@ -287,7 +297,8 @@ public class BeforeEnteringLevel : MonoBehaviour
     rotateFistBool = true;
     // GameManager.tutorialsVideoPlayer.clip = GameManager.rotateFistClip;
 
-    GameManager.movementAnimatorModule = GameManager.rotateFistAnim;
+    GameManager.movementAnimatorModule.SetBool("Rotate", true);
+    //GameManager.movementAnimatorModule.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(GameManager.rotateFistAnim);
     //GameManager.tutorialsVideoPlayer.Play();
     GameManager.rotateFistClip.SetActive(true);
   }
@@ -298,6 +309,7 @@ public class BeforeEnteringLevel : MonoBehaviour
     GameManager.completedToggle.isOn = true;
     StartCoroutine(ChangeBool("rotate"));
     GameManager.rotateFistClip.SetActive(false);
+    GameManager.movementAnimatorModule.SetBool("Rotate", false);
   }
 
   void pickAndDropActivationFlow()
@@ -305,7 +317,7 @@ public class BeforeEnteringLevel : MonoBehaviour
     GameManager.TutorialsScreen.SetActive(true);
     pickingDropBool = true;
     //GameManager.tutorialsVideoPlayer.clip = GameManager.pickAndGrabClip;
-    GameManager.movementAnimatorModule = GameManager.pickAndGrabAnim;
+    //GameManager.movementAnimatorModule.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(GameManager.pickAndGrabAnim);
 
   }
 
@@ -320,8 +332,10 @@ public class BeforeEnteringLevel : MonoBehaviour
     GameManager.TaskText.text = "Removing leaves\nMotion - Lock and use Fin on other hand";
     GameManager.TutorialsScreen.SetActive(true);
     leavesMovementBool = true;
+    tutorialStarted = true;
     //GameManager.tutorialsVideoPlayer.clip = GameManager.leavesMotionClip;
-    GameManager.movementAnimatorModule = GameManager.leavesMotionAnim;
+    GameManager.movementAnimatorModule.SetBool("Leaves", true);
+    //GameManager.movementAnimatorModule.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(GameManager.leavesMotionAnim);
     //GameManager.tutorialsVideoPlayer.Play();
     GameManager.leavesMotionClip.SetActive(true);
   }
@@ -331,6 +345,7 @@ public class BeforeEnteringLevel : MonoBehaviour
     GameManager.completedToggle.isOn = true;
     StartCoroutine(ChangeBool("leaves"));
     GameManager.leavesMotionClip.SetActive(false);
+    GameManager.movementAnimatorModule.SetBool("Leaves", false);
   }
 
   IEnumerator ChangeBool(string name)

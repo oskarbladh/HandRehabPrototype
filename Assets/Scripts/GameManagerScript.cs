@@ -86,11 +86,11 @@ public class GameManagerScript : MonoBehaviour
   public GameObject pickAndGrabClip;
   public GameObject leavesMotionClip;
 
-  public Animator finMovementAnim;
-  public Animator closeFistAnim;
-  public Animator rotateFistAnim;
-  public Animator pickAndGrabAnim;
-  public Animator leavesMotionAnim;
+  // public AnimatorController finMovementAnim;
+  // public AnimatorController closeFistAnim;
+  // public AnimatorController rotateFistAnim;
+  // public AnimatorController pickAndGrabAnim;
+  // public AnimatorController leavesMotionAnim;
 
   void Awake()
   {
@@ -176,13 +176,14 @@ public class GameManagerScript : MonoBehaviour
           Score.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "Score: " + (score);
           //WinningScreenText.gameObject.SetActive(false);
           //check for 5 mushrooms in basket and Transition to next level
-          if (MushroomsInBasket.Count > 4 && score > 400)
+          if (MushroomsInBasket.Count > 4 && score >= 400)
           {
             //Transition to next level
             //SceneManager.LoadScene("Level 5");
             WinningScreenText.text = "" + score;
             showWinningScreen();
-          } else if (GoodMushrooms.Count <3 && score <200)
+          }
+          else if (GoodMushrooms.Count < 3 && score < 200)
           {
             RetryScreen.SetActive(true);
             //ResetLevel();
@@ -219,7 +220,7 @@ public class GameManagerScript : MonoBehaviour
         {
           Score.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = "Score: " + (score);
 
-          if (MushroomsInBasket.Count > 5 && score == 500)
+          if (MushroomsInBasket.Count > 5 && score >= 600)
           {
             //Transition to next level
             // SceneManager.LoadScene("");

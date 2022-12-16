@@ -314,6 +314,9 @@ public class MushroomPointAndPickup : MonoBehaviour
         {
           if (!AimAnimator.GetBool("Locked"))
           {
+            Debug.Log("Nidex:" + GameManager.currentIndex);
+            if (GameManager.AllMushrooms.Count == 1 && GameManager.currentIndex == 1)
+              GameManager.currentIndex = 0;
             SelectedObject = GameManager.AllMushrooms[GameManager.currentIndex];
             GameManager.selectedComponentMushroonInfoScript = SelectedObject.GetComponent<MushroomInfo>();
             GameManager.objectIsSelected = true;

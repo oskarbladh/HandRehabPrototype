@@ -61,6 +61,7 @@ public class GameManagerScript : MonoBehaviour
   public GameObject RetryScreen;
 
   public TextMeshProUGUI TaskText;
+  public TextMeshProUGUI MushroomsLeft;
   public int currentIndex = 0;
 
   public string levelName = "5";
@@ -207,6 +208,7 @@ public class GameManagerScript : MonoBehaviour
         {
           Score.gameObject.SetActive(false);
           WinningScreenText.gameObject.SetActive(false);
+          MushroomsLeft.text = "Mushrooms Left:" + (8 - MushroomsInBasket.Count);
           //check for 5 mushrooms in basket and Transition to next level
           if (MushroomsInBasket.Count == 8)
           {
@@ -354,23 +356,30 @@ public class GameManagerScript : MonoBehaviour
   public void menuOnClick()
   {
     //Menuscreen transition
+    SceneManager.LoadScene("Level Menu");
   }
 
   public void nextLevelOnClick()
   {
-    nextLevelWithLoadScreen(nextLevel - 1);
+    nextLevelWithLoadScreen(nextLevel);
   }
 
   public void retryLevelOnClick()
   {
-    nextLevelWithLoadScreen((nextLevel - 2));
+    nextLevelWithLoadScreen((nextLevel - 1));
   }
 
   public void quitOnClick()
   {
     //Exit game 
+    Application.Quit();
   }
 
+  public void Loadlevel(int number)
+  {
+    //Menuscreen transition
+    SceneManager.LoadScene(number);
+  }
 
 
 }
